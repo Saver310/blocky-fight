@@ -1,0 +1,1529 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Local Multiplayer</name>
+    <events>
+        <include>Main</include>
+        <event-block sid="874264146242940">
+            <conditions>
+                <condition id="0" name="On function" sid="313814764672884" type="Function">
+                    <param id="0" name="Name">&quot;BlockerRespawn&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="6" name="Stop" sid="750429242537332" type="Audio">
+                    <param id="0" name="Tag">&quot;flamey1&quot;</param>
+                </action>
+                <action id="0" name="Play" sid="166245118038194" type="Audio">
+                    <param id="0" name="Audio file">sndFlameThrowerEnd</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="7" name="Play (by name)" sid="895511886220755" type="Audio">
+                    <param id="0" name="Folder">0</param>
+                    <param id="1" name="Audio file name">choose(&quot;die2&quot;,&quot;die3&quot;)</param>
+                    <param id="3" name="Loop">0</param>
+                    <param id="4" name="Volume">0</param>
+                    <param id="2" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="-10" name="Add to" sid="673447025041335" type="System">
+                    <param id="0" name="Variable">BlockerScore2</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="429227338820078" type="Blocker" />
+                <action id="-9" name="Destroy" sid="391627527105852" type="BlockerShoes" />
+                <action id="-9" name="Destroy" sid="698219832400329" type="BlockerClothes" />
+                <action id="-9" name="Destroy" sid="183307904272413" type="Hat" />
+            </actions>
+            <sub-events>
+                <event-block any="1" sid="569878047734052">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="657939849348347" type="Weapon">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="891559630935126" type="Weapon">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">12</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="317787780125735">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="457361090466515" type="Weapon">
+                                    <param id="0" name="Instance variable">Ammo</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="736393096906770" type="Weapon">
+                                    <param id="0" name="Object">WeaponDrop</param>
+                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="375942640630497" type="WeaponDrop">
+                                    <param id="0" name="Instance variable">Weapon</param>
+                                    <param id="1" name="Value">Weapon.Weapon</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="170961447329901" type="WeaponDrop">
+                                    <param id="0" name="Instance variable">Ammo</param>
+                                    <param id="1" name="Value">Weapon.Ammo</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="861125838257415">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="153314402340519" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="679071498608916" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Pistol&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="452739669576556">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="813525818426844" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="283314780654062" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Rifle&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="161019409315339">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="849749933001366" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">3</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="761650978770050" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Shotgun&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="992170482906980">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="388085912597627" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">4</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="634767387322061" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Sword&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="874817941420026">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="223036442606365" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">5</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="958349281898010" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Revolver&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="939380885887571">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="684817406140821" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">6</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="905734773762170" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;RocketLauncher&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="357630969047995">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="653926590804962" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">7</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="488084397120754" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Crossbow&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="219309287370992">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="290166056205312" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">8</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="852198523969106" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Flamethrower&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="194555501326690">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="933410807371645" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">9</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="723954206687491" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;DoubleBarrel&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="165493500638937">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="710821098249078" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">10</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="402126491973517" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;LeadPipe&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="458996902007629">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="572780576942440" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">11</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="402173368309313" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Garand&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="399015137907497">
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Destroy" sid="566608027035556" type="Weapon" />
+                                <action id="-9" name="Destroy" sid="238035339616218" type="BulletWound" />
+                                <action id="-16" name="Wait" sid="993937434822110" type="System">
+                                    <param id="0" name="Seconds">float(random(0.5,1.75))</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="262446322081860" type="Player1Spawner">
+                                    <param id="0" name="Object">Blocker</param>
+                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="435988830011986" type="Player1Spawner">
+                                    <param id="0" name="Object">BlockerShoes</param>
+                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="978939429975978" type="Player1Spawner">
+                                    <param id="0" name="Object">Hat</param>
+                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="528773078655913" type="Player1Spawner">
+                                    <param id="0" name="Object">BlockerClothes</param>
+                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="366805180276590" type="Player1Spawner">
+                                    <param id="0" name="Object">Weapon</param>
+                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" sid="193086426662131" type="BlockerShoes">
+                                    <param id="0" name="Pin to">Blocker</param>
+                                    <param id="1" name="Mode">0</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" sid="961011469049500" type="BlockerClothes">
+                                    <param id="0" name="Pin to">Blocker</param>
+                                    <param id="1" name="Mode">0</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" sid="620227174986279" type="Weapon">
+                                    <param id="0" name="Pin to">Blocker</param>
+                                    <param id="1" name="Mode">0</param>
+                                </action>
+                                <action behavior="Flash" id="0" name="Flash" sid="450143782512169" type="Blocker">
+                                    <param id="0" name="&apos;On&apos; time">0.05</param>
+                                    <param id="1" name="&apos;Off&apos; time">0.05</param>
+                                    <param id="2" name="Duration">2</param>
+                                </action>
+                                <action behavior="Flash" id="0" name="Flash" sid="197777143840249" type="BlockerShoes">
+                                    <param id="0" name="&apos;On&apos; time">0.05</param>
+                                    <param id="1" name="&apos;Off&apos; time">0.05</param>
+                                    <param id="2" name="Duration">2</param>
+                                </action>
+                                <action behavior="Flash" id="0" name="Flash" sid="435851841387210" type="Hat">
+                                    <param id="0" name="&apos;On&apos; time">0.05</param>
+                                    <param id="1" name="&apos;Off&apos; time">0.05</param>
+                                    <param id="2" name="Duration">2</param>
+                                </action>
+                                <action behavior="Flash" id="0" name="Flash" sid="921243490371131" type="BlockerClothes">
+                                    <param id="0" name="&apos;On&apos; time">0.05</param>
+                                    <param id="1" name="&apos;Off&apos; time">0.05</param>
+                                    <param id="2" name="Duration">2</param>
+                                </action>
+                                <action behavior="Flash" id="0" name="Flash" sid="194057662156907" type="Weapon">
+                                    <param id="0" name="&apos;On&apos; time">0.05</param>
+                                    <param id="1" name="&apos;Off&apos; time">0.05</param>
+                                    <param id="2" name="Duration">2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="654519728179406">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="483988979670643" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="504321665354465" type="Weapon" />
+                        <action id="-9" name="Destroy" sid="184563531846193" type="BulletWound" />
+                        <action id="-16" name="Wait" sid="936176653850855" type="System">
+                            <param id="0" name="Seconds">float(random(0.5,1.75))</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="158866959444556" type="Player1Spawner">
+                            <param id="0" name="Object">Blocker</param>
+                            <param id="1" name="Layer">&quot;Main&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="181523498223382" type="Player1Spawner">
+                            <param id="0" name="Object">BlockerShoes</param>
+                            <param id="1" name="Layer">&quot;Main&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="156687745808608" type="Player1Spawner">
+                            <param id="0" name="Object">Hat</param>
+                            <param id="1" name="Layer">&quot;Main&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="955805031058839" type="Player1Spawner">
+                            <param id="0" name="Object">BlockerClothes</param>
+                            <param id="1" name="Layer">&quot;Main&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="119305554728685" type="Player1Spawner">
+                            <param id="0" name="Object">Weapon</param>
+                            <param id="1" name="Layer">&quot;Main&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="275876552827080" type="BlockerShoes">
+                            <param id="0" name="Pin to">Blocker</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="528055266400654" type="BlockerClothes">
+                            <param id="0" name="Pin to">Blocker</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="231967922113346" type="Weapon">
+                            <param id="0" name="Pin to">Blocker</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                        <action behavior="Flash" id="0" name="Flash" sid="387332782872173" type="Blocker">
+                            <param id="0" name="&apos;On&apos; time">0.05</param>
+                            <param id="1" name="&apos;Off&apos; time">0.05</param>
+                            <param id="2" name="Duration">2</param>
+                        </action>
+                        <action behavior="Flash" id="0" name="Flash" sid="498135644672161" type="BlockerShoes">
+                            <param id="0" name="&apos;On&apos; time">0.05</param>
+                            <param id="1" name="&apos;Off&apos; time">0.05</param>
+                            <param id="2" name="Duration">2</param>
+                        </action>
+                        <action behavior="Flash" id="0" name="Flash" sid="307604523607556" type="Hat">
+                            <param id="0" name="&apos;On&apos; time">0.05</param>
+                            <param id="1" name="&apos;Off&apos; time">0.05</param>
+                            <param id="2" name="Duration">2</param>
+                        </action>
+                        <action behavior="Flash" id="0" name="Flash" sid="254303080129657" type="BlockerClothes">
+                            <param id="0" name="&apos;On&apos; time">0.05</param>
+                            <param id="1" name="&apos;Off&apos; time">0.05</param>
+                            <param id="2" name="Duration">2</param>
+                        </action>
+                        <action behavior="Flash" id="0" name="Flash" sid="879011774966591" type="Weapon">
+                            <param id="0" name="&apos;On&apos; time">0.05</param>
+                            <param id="1" name="&apos;Off&apos; time">0.05</param>
+                            <param id="2" name="Duration">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="695812331424673">
+            <conditions>
+                <condition id="0" name="On function" sid="372392314946325" type="Function">
+                    <param id="0" name="Name">&quot;BlockerRespawn2&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="6" name="Stop" sid="837393088124555" type="Audio">
+                    <param id="0" name="Tag">&quot;flamey2&quot;</param>
+                </action>
+                <action id="0" name="Play" sid="582062199141594" type="Audio">
+                    <param id="0" name="Audio file">sndFlameThrowerEnd</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="7" name="Play (by name)" sid="785254130972035" type="Audio">
+                    <param id="0" name="Folder">0</param>
+                    <param id="1" name="Audio file name">choose(&quot;die2&quot;,&quot;die3&quot;)</param>
+                    <param id="3" name="Loop">0</param>
+                    <param id="4" name="Volume">0</param>
+                    <param id="2" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="-10" name="Add to" sid="158776448274277" type="System">
+                    <param id="0" name="Variable">BlockerScore</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-9" name="Destroy" sid="674853084412553" type="Blocker2" />
+                <action id="-9" name="Destroy" sid="668046659153276" type="BlockerShoes2" />
+                <action id="-9" name="Destroy" sid="230057302959901" type="BlockerClothes2" />
+                <action id="-9" name="Destroy" sid="414770659205270" type="Hat2" />
+            </actions>
+            <sub-events>
+                <event-block any="1" sid="556874215810569">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="208532361133930" type="Weapon2">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                        <condition id="-7" name="Compare instance variable" sid="615991959129873" type="Weapon2">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">12</param>
+                        </condition>
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <event-block sid="891247050072418">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="336879306226092" type="Weapon2">
+                                    <param id="0" name="Instance variable">Ammo</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Spawn another object" sid="219865040215008" type="Weapon2">
+                                    <param id="0" name="Object">WeaponDrop</param>
+                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="756677325469530" type="WeaponDrop">
+                                    <param id="0" name="Instance variable">Weapon</param>
+                                    <param id="1" name="Value">Weapon2.Weapon</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="621439517025888" type="WeaponDrop">
+                                    <param id="0" name="Instance variable">Ammo</param>
+                                    <param id="1" name="Value">Weapon2.Ammo</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="107851549130352">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="310966492276576" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="718372020618425" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Pistol&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="926258737935594">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="114870620198097" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">2</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="191290736396772" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Rifle&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="804850285409776">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="164091884422624" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">3</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="871735003844006" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Shotgun&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="243955236536993">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="247256225783870" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">4</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="559656841081865" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Sword&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="781933527739331">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="231526588885464" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">5</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="908184996919917" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Revolver&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="364683527228558">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="702682834558615" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">6</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="694825823708097" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;RocketLauncher&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="934584197954225">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="212732884294552" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">7</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="410968426040784" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Crossbow&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="453969835689407">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="427233581244205" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">8</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="526787442318433" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Flamethrower&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="749865971156141">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="148469018698288" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">9</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="910527799659178" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;DoubleBarrel&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="144709601791341">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="164337546965415" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">10</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="990133363227261" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;LeadPipe&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="708168792452679">
+                                    <conditions>
+                                        <condition id="-7" name="Compare instance variable" sid="620282330208754" type="WeaponDrop">
+                                            <param id="0" name="Instance variable">Weapon</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Value">11</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="4" name="Set animation" sid="682957962196677" type="WeaponDrop">
+                                            <param id="0" name="Animation">&quot;Garand&quot;</param>
+                                            <param id="1" name="From">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="303044331459589">
+                            <conditions />
+                            <actions>
+                                <action id="-9" name="Destroy" sid="810236543403168" type="Weapon2" />
+                                <action id="-9" name="Destroy" sid="923482504738537" type="BulletWound2" />
+                                <action id="-16" name="Wait" sid="900957994173237" type="System">
+                                    <param id="0" name="Seconds">float(random(0.5,1.75))</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="183701085926678" type="Player2Spawner">
+                                    <param id="0" name="Object">Blocker2</param>
+                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="436713964530889" type="Player2Spawner">
+                                    <param id="0" name="Object">BlockerShoes2</param>
+                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="474059955097432" type="Player2Spawner">
+                                    <param id="0" name="Object">Hat2</param>
+                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="409652809324736" type="Player2Spawner">
+                                    <param id="0" name="Object">BlockerClothes2</param>
+                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="211804611290641" type="Player2Spawner">
+                                    <param id="0" name="Object">Weapon2</param>
+                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" sid="635229811257327" type="BlockerShoes2">
+                                    <param id="0" name="Pin to">Blocker2</param>
+                                    <param id="1" name="Mode">0</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" sid="388636835463643" type="BlockerClothes2">
+                                    <param id="0" name="Pin to">Blocker2</param>
+                                    <param id="1" name="Mode">0</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" sid="847747799190491" type="Weapon2">
+                                    <param id="0" name="Pin to">Blocker2</param>
+                                    <param id="1" name="Mode">0</param>
+                                </action>
+                                <action behavior="Flash" id="0" name="Flash" sid="609563525474861" type="Blocker2">
+                                    <param id="0" name="&apos;On&apos; time">0.05</param>
+                                    <param id="1" name="&apos;Off&apos; time">0.05</param>
+                                    <param id="2" name="Duration">2</param>
+                                </action>
+                                <action behavior="Flash" id="0" name="Flash" sid="894843392597110" type="BlockerShoes2">
+                                    <param id="0" name="&apos;On&apos; time">0.05</param>
+                                    <param id="1" name="&apos;Off&apos; time">0.05</param>
+                                    <param id="2" name="Duration">2</param>
+                                </action>
+                                <action behavior="Flash" id="0" name="Flash" sid="433736410788651" type="Hat2">
+                                    <param id="0" name="&apos;On&apos; time">0.05</param>
+                                    <param id="1" name="&apos;Off&apos; time">0.05</param>
+                                    <param id="2" name="Duration">2</param>
+                                </action>
+                                <action behavior="Flash" id="0" name="Flash" sid="323949328539439" type="BlockerClothes2">
+                                    <param id="0" name="&apos;On&apos; time">0.05</param>
+                                    <param id="1" name="&apos;Off&apos; time">0.05</param>
+                                    <param id="2" name="Duration">2</param>
+                                </action>
+                                <action behavior="Flash" id="0" name="Flash" sid="513657651139148" type="Weapon2">
+                                    <param id="0" name="&apos;On&apos; time">0.05</param>
+                                    <param id="1" name="&apos;Off&apos; time">0.05</param>
+                                    <param id="2" name="Duration">2</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="557912587610297">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="646263204583078" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Destroy" sid="819853180131118" type="Weapon2" />
+                        <action id="-9" name="Destroy" sid="175141670213644" type="BulletWound2" />
+                        <action id="-16" name="Wait" sid="408771815924307" type="System">
+                            <param id="0" name="Seconds">float(random(0.5,1.75))</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="818220851817206" type="Player2Spawner">
+                            <param id="0" name="Object">Blocker2</param>
+                            <param id="1" name="Layer">&quot;Main&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="199405700629099" type="Player2Spawner">
+                            <param id="0" name="Object">BlockerShoes2</param>
+                            <param id="1" name="Layer">&quot;Main&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="571295172585735" type="Player2Spawner">
+                            <param id="0" name="Object">Hat2</param>
+                            <param id="1" name="Layer">&quot;Main&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="998206571751471" type="Player2Spawner">
+                            <param id="0" name="Object">BlockerClothes2</param>
+                            <param id="1" name="Layer">&quot;Main&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action id="0" name="Spawn another object" sid="349599393314113" type="Player2Spawner">
+                            <param id="0" name="Object">Weapon2</param>
+                            <param id="1" name="Layer">&quot;Main&quot;</param>
+                            <param id="2" name="Image point">0</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="640715466837061" type="BlockerShoes2">
+                            <param id="0" name="Pin to">Blocker2</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="715873730623723" type="BlockerClothes2">
+                            <param id="0" name="Pin to">Blocker2</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                        <action behavior="Pin" id="0" name="Pin to object" sid="434260689351788" type="Weapon2">
+                            <param id="0" name="Pin to">Blocker2</param>
+                            <param id="1" name="Mode">0</param>
+                        </action>
+                        <action behavior="Flash" id="0" name="Flash" sid="950337484711236" type="Blocker2">
+                            <param id="0" name="&apos;On&apos; time">0.05</param>
+                            <param id="1" name="&apos;Off&apos; time">0.05</param>
+                            <param id="2" name="Duration">2</param>
+                        </action>
+                        <action behavior="Flash" id="0" name="Flash" sid="385261597583022" type="BlockerShoes2">
+                            <param id="0" name="&apos;On&apos; time">0.05</param>
+                            <param id="1" name="&apos;Off&apos; time">0.05</param>
+                            <param id="2" name="Duration">2</param>
+                        </action>
+                        <action behavior="Flash" id="0" name="Flash" sid="680346381145716" type="Hat2">
+                            <param id="0" name="&apos;On&apos; time">0.05</param>
+                            <param id="1" name="&apos;Off&apos; time">0.05</param>
+                            <param id="2" name="Duration">2</param>
+                        </action>
+                        <action behavior="Flash" id="0" name="Flash" sid="876184494850919" type="BlockerClothes2">
+                            <param id="0" name="&apos;On&apos; time">0.05</param>
+                            <param id="1" name="&apos;Off&apos; time">0.05</param>
+                            <param id="2" name="Duration">2</param>
+                        </action>
+                        <action behavior="Flash" id="0" name="Flash" sid="587541649657793" type="Weapon2">
+                            <param id="0" name="&apos;On&apos; time">0.05</param>
+                            <param id="1" name="&apos;Off&apos; time">0.05</param>
+                            <param id="2" name="Duration">2</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="107592010287215">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="999392312066943" type="System">
+                    <param id="0" name="Interval (seconds)">float(random(1,6.5))</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="168954409405607" type="System">
+                    <param id="0" name="Object to create">WeaponDrop</param>
+                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                    <param id="2" name="X">int(random(16,780))</param>
+                    <param id="3" name="Y">-80</param>
+                </action>
+                <action id="-10" name="Set value" sid="383940526611692" type="WeaponDrop">
+                    <param id="0" name="Instance variable">Weapon</param>
+                    <param id="1" name="Value">int(random(0,12))</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="827922021578318">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="750039819163642" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="163117005530350" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">int(random(8, 14))</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="761092803645527" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Pistol&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="624011627754220">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="120689475804809" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="703207808734267" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">int(random(15, 25))</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="709760701438834" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Rifle&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="276113705718711">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="519982830417788" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="523470213789490" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">int(random(5, 8))</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="432029933542657" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Shotgun&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="527458941733742">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="568707263916790" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">4</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="743650355781265" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">16</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="430344963425518" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Sword&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="515209568008392">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="883637413667347" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">5</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="456708060022384" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">6</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="528982603319381" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Revolver&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="334777710969819">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="858158933744509" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">6</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="673451138453114" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">3</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="822331238619412" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;RocketLauncher&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="499998075324693">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="105916832150133" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">7</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="413780967038762" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">5</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="623276377145126" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Crossbow&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="757460989397554">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="414565726197088" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">8</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="790356514695240" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">75</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="971121667377999" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Flamethrower&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="232769918343530">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="401787532513705" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">9</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="205006808493973" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">int(random(4,6))</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="366516955726548" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;DoubleBarrel&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="492257571911799">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="217006742610326" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">10</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="707437731631632" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">24</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="528715135306670" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;LeadPipe&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="990470647087686">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="350207742231612" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">11</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="535902370142189" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">8</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="515451434684169" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Garand&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="855812968431773">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="799619564214970" type="System">
+                    <param id="0" name="Interval (seconds)">float(random(1,6.5))</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="579798449298941" type="System">
+                    <param id="0" name="Object to create">WeaponDrop</param>
+                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                    <param id="2" name="X">int(random(16,780))</param>
+                    <param id="3" name="Y">-80</param>
+                </action>
+                <action id="-10" name="Set value" sid="457099007014333" type="WeaponDrop">
+                    <param id="0" name="Instance variable">Weapon</param>
+                    <param id="1" name="Value">int(random(0,12))</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="587054515779634">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="653610120923248" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="947751474169936" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">int(random(8, 14))</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="831583183974557" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Pistol&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="142208947375077">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="476226108231239" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">2</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="290312953643186" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">int(random(15, 25))</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="387905098586495" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Rifle&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="935194061896908">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="331560115032475" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">3</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="312730145262163" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">int(random(5, 8))</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="894173838994804" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Shotgun&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="971497832300178">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="585153756181438" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">4</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="441380608860614" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">16</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="504914215802297" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Sword&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="406868431984766">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="422137677211731" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">5</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="991421004816126" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">6</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="194876895651203" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Revolver&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="943278159758941">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="560205469187572" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">6</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="283955641859061" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">3</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="137248239872983" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;RocketLauncher&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="325537676234326">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="419930816471966" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">7</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="940134328421061" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">5</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="251435630394658" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Crossbow&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="649767122710390">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="463939076739269" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">8</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="991444094403175" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">75</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="999186143962622" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Flamethrower&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="464463347131354">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="864896524027616" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">9</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="882405182434122" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">int(random(4,6))</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="112304610969086" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;DoubleBarrel&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="783037269183808">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="372465617353382" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">10</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="709562496403420" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">24</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="529636956923365" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;LeadPipe&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="416776513992169">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="291748146117858" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Weapon</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">11</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="923699279460374" type="WeaponDrop">
+                            <param id="0" name="Instance variable">Ammo</param>
+                            <param id="1" name="Value">8</param>
+                        </action>
+                        <action id="4" name="Set animation" sid="933429212161560" type="WeaponDrop">
+                            <param id="0" name="Animation">&quot;Garand&quot;</param>
+                            <param id="1" name="From">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block any="1" sid="173570381336939">
+            <conditions>
+                <condition behavior="Timer" id="0" name="On timer" sid="118694001007343" type="Timer">
+                    <param id="0" name="Tag">&quot;gameend&quot;</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="411068470245706" type="System">
+                    <param id="0" name="Variable">BlockerScore</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">PointLimit</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="366808808021648" type="System">
+                    <param id="0" name="Variable">BlockerScore2</param>
+                    <param id="1" name="Comparison">5</param>
+                    <param id="2" name="Value">PointLimit</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="680237336708672" type="WinText">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="0" name="Call function" sid="988443484004061" type="Function">
+                    <param id="0" name="Name">&quot;gameoverrestart&quot;</param>
+                    <param id="1" name="Parameter {n}"></param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="917351789087986">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="301023897644174" type="System">
+                            <param id="0" name="Variable">BlockerScore</param>
+                            <param id="1" name="Comparison">4</param>
+                            <param id="2" name="Value">BlockerScore2</param>
+                        </condition>
+                        <condition id="-4" name="Trigger once while true" sid="649953359810916" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="979903754001636" type="Audio">
+                            <param id="0" name="Audio file">PlayerWin</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">-5</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="436837882852765">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="231046996634477" type="System">
+                                    <param id="0" name="Variable">Language</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;English&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="334170204360338" type="WinText">
+                                    <param id="0" name="Text">&quot;Player 1 Wins!&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="887764047479877">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="371491289192769" type="System">
+                                    <param id="0" name="Variable">Language</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Polish&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="831547628010394" type="WinText">
+                                    <param id="0" name="Text">&quot;Gracz 1 Wygrał!&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="498759832420781">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="245723528904273" type="System">
+                                    <param id="0" name="Variable">Language</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Russian&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="240158553753040" type="WinText">
+                                    <param id="0" name="Text">&quot;Игрок 1 Победил!&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="564232698027726">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="326390264857183" type="System">
+                                    <param id="0" name="Variable">Language</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Turkish&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="138826687549665" type="WinText">
+                                    <param id="0" name="Text">&quot;Oyuncu 1 Kazandı!&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="348859216211675">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="753347533823620" type="System">
+                            <param id="0" name="Variable">BlockerScore</param>
+                            <param id="1" name="Comparison">2</param>
+                            <param id="2" name="Value">BlockerScore2</param>
+                        </condition>
+                        <condition id="-4" name="Trigger once while true" sid="627947923586180" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="417595268344015" type="Audio">
+                            <param id="0" name="Audio file">PlayerWin2</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">-5</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="251490020640401">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="846068556466349" type="System">
+                                    <param id="0" name="Variable">Language</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;English&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="725093684384122" type="WinText">
+                                    <param id="0" name="Text">&quot;Player 2 Wins!&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="520948542247136">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="565749516778156" type="System">
+                                    <param id="0" name="Variable">Language</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Polish&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="866928259526694" type="WinText">
+                                    <param id="0" name="Text">&quot;Gracz 2 Wygrał!&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="861222852219336">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="733636913254036" type="System">
+                                    <param id="0" name="Variable">Language</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Russian&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="853401177937509" type="WinText">
+                                    <param id="0" name="Text">&quot;Игрок 2 Победил!&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="361749796329574">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="208649947576429" type="System">
+                                    <param id="0" name="Variable">Language</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Turkish&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="211007429936019" type="WinText">
+                                    <param id="0" name="Text">&quot;Oyuncu 2 Kazandı!&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="995827274136778">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="274912487901880" type="System">
+                            <param id="0" name="Variable">BlockerScore</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">BlockerScore2</param>
+                        </condition>
+                        <condition id="-4" name="Trigger once while true" sid="582899873719886" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="597491531963392" type="Audio">
+                            <param id="0" name="Audio file">Error</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">-5</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="600864497734855">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="689540342837808" type="System">
+                                    <param id="0" name="Variable">Language</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;English&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="959755273085091" type="WinText">
+                                    <param id="0" name="Text">&quot;Tie!&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="695162103953114">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="566380997108611" type="System">
+                                    <param id="0" name="Variable">Language</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Polish&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="330326207942602" type="WinText">
+                                    <param id="0" name="Text">&quot;Remis!&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="571802976971620">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="842232486553484" type="System">
+                                    <param id="0" name="Variable">Language</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Russian&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="217354998212686" type="WinText">
+                                    <param id="0" name="Text">&quot;Ничья!&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="937389183536873">
+                            <conditions>
+                                <condition id="-14" name="Compare variable" sid="507909804839299" type="System">
+                                    <param id="0" name="Variable">Language</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">&quot;Turkish&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="106207473974297" type="WinText">
+                                    <param id="0" name="Text">&quot;Berabere!&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="340762932508502">
+            <conditions>
+                <condition id="0" name="On function" sid="556792678177426" type="Function">
+                    <param id="0" name="Name">&quot;gameoverrestart&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-16" name="Wait" sid="100592082777641" type="System">
+                    <param id="0" name="Seconds">3</param>
+                </action>
+                <action id="6" name="Stop" sid="639319246984452" type="Audio">
+                    <param id="0" name="Tag">&quot;flamey1&quot;</param>
+                </action>
+                <action id="6" name="Stop" sid="259801642003106" type="Audio">
+                    <param id="0" name="Tag">&quot;flamey2&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="113573672736507" type="System">
+                    <param id="0" name="Variable">BlockerScore</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="435540472223291" type="System">
+                    <param id="0" name="Variable">BlockerScore2</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-26" name="Restart layout" sid="755830965980932" type="System" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

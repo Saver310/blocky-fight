@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Loading</name>
+    <events>
+        <variable constant="0" name="ScrollSpeed" sid="903930147977604" static="0" type="number">-400</variable>
+        <event-block sid="421620741715593">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="219778522873119" type="System" />
+            </conditions>
+            <actions>
+                <action id="16" name="Set title" sid="648982116660418" type="NWjs">
+                    <param id="0" name="Title">&quot;Blocky Fight: Lock and Loaded&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="825513018332812">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="797231597252913" type="System" />
+            </conditions>
+            <actions>
+                <action id="3" name="Set progress" sid="508398452508251" type="ProgressBar">
+                    <param id="0" name="Value">loadingprogress * 100</param>
+                </action>
+                <action id="0" name="Set text" sid="914721170058753" type="LoadingPercentage">
+                    <param id="0" name="Text">round(loadingprogress * 100) &amp; &quot;%&quot;</param>
+                </action>
+                <action id="-1" name="Set X" sid="722508654656634" type="ScrollerPlate">
+                    <param id="0" name="X">ScrollerPlate.X+(dt*ScrollSpeed)</param>
+                </action>
+                <action id="-1" name="Set X" sid="185445689034856" type="Skyline">
+                    <param id="0" name="X">Skyline.X+(dt*ScrollSpeed / 4)</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="398740372129295">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="675713050153655" type="ScrollerPlate">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">-1536</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="112891674209941" type="ScrollerPlate">
+                            <param id="0" name="X">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="936890769624215">
+                    <conditions>
+                        <condition id="-1" name="Compare X" sid="769577804264935" type="Skyline">
+                            <param id="0" name="Comparison">3</param>
+                            <param id="1" name="X co-ordinate">-1000</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-1" name="Set X" sid="678068766851592" type="Skyline">
+                            <param id="0" name="X">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="183690541705551">
+            <conditions>
+                <condition id="-25" name="On loader layout complete" sid="473141936890606" type="System" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="906172671004746" type="LoaderBlocker">
+                    <param id="0" name="Animation">&quot;Loaded&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="-9" name="Set value" sid="962003152854551" type="System">
+                    <param id="0" name="Variable">ScrollSpeed</param>
+                    <param id="1" name="Value">-350</param>
+                </action>
+                <action id="-16" name="Wait" sid="621797023572157" type="System">
+                    <param id="0" name="Seconds">0.05</param>
+                </action>
+                <action id="-9" name="Set value" sid="657776227276675" type="System">
+                    <param id="0" name="Variable">ScrollSpeed</param>
+                    <param id="1" name="Value">-300</param>
+                </action>
+                <action id="-16" name="Wait" sid="238957912754573" type="System">
+                    <param id="0" name="Seconds">0.05</param>
+                </action>
+                <action id="-9" name="Set value" sid="847194543479991" type="System">
+                    <param id="0" name="Variable">ScrollSpeed</param>
+                    <param id="1" name="Value">-250</param>
+                </action>
+                <action id="-16" name="Wait" sid="283501255084132" type="System">
+                    <param id="0" name="Seconds">0.05</param>
+                </action>
+                <action id="-9" name="Set value" sid="326546593528946" type="System">
+                    <param id="0" name="Variable">ScrollSpeed</param>
+                    <param id="1" name="Value">-200</param>
+                </action>
+                <action id="-16" name="Wait" sid="589589232854097" type="System">
+                    <param id="0" name="Seconds">0.05</param>
+                </action>
+                <action id="-9" name="Set value" sid="531822506965085" type="System">
+                    <param id="0" name="Variable">ScrollSpeed</param>
+                    <param id="1" name="Value">-150</param>
+                </action>
+                <action id="-16" name="Wait" sid="410726085002634" type="System">
+                    <param id="0" name="Seconds">0.05</param>
+                </action>
+                <action id="-9" name="Set value" sid="329729966690621" type="System">
+                    <param id="0" name="Variable">ScrollSpeed</param>
+                    <param id="1" name="Value">-100</param>
+                </action>
+                <action id="-16" name="Wait" sid="616554265991542" type="System">
+                    <param id="0" name="Seconds">0.05</param>
+                </action>
+                <action id="-9" name="Set value" sid="814016738126335" type="System">
+                    <param id="0" name="Variable">ScrollSpeed</param>
+                    <param id="1" name="Value">-50</param>
+                </action>
+                <action id="-16" name="Wait" sid="427913702197470" type="System">
+                    <param id="0" name="Seconds">0.05</param>
+                </action>
+                <action id="-9" name="Set value" sid="434250122174683" type="System">
+                    <param id="0" name="Variable">ScrollSpeed</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="203857254103438">
+            <conditions>
+                <condition id="3" name="Compare frame" sid="341728141578700" type="LoaderBlocker">
+                    <param id="0" name="Comparison">4</param>
+                    <param id="1" name="Number">11</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="621525997701657" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="590933117421841" type="Audio">
+                    <param id="0" name="Audio file">ShotgunDeploy</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="172967371281387">
+            <conditions>
+                <condition id="3" name="Compare frame" sid="525323853747524" type="LoaderBlocker">
+                    <param id="0" name="Comparison">4</param>
+                    <param id="1" name="Number">17</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-16" name="Wait" sid="833308053174248" type="System">
+                    <param id="0" name="Seconds">0.5</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="873115725316550" type="System">
+                    <param id="0" name="Layout">Main Menu</param>
+                </action>
+                <action id="-37" name="Load" sid="390836394655730" type="System">
+                    <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="617437587870088">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="143264295243007" type="System">
+                    <param id="0" name="Interval (seconds)">1.0</param>
+                </condition>
+                <condition id="2" inverted="1" name="Is playing" sid="645266949754059" type="LoaderBlocker">
+                    <param id="0" name="Animation">&quot;Loaded&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="457941826657580" type="LoadingText">
+                    <param id="0" name="Text">&quot;LOADING&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="304712093912363" type="System">
+                    <param id="0" name="Seconds">0.25</param>
+                </action>
+                <action id="0" name="Set text" sid="984801159392225" type="LoadingText">
+                    <param id="0" name="Text">&quot;LOADING.&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="197372525788144" type="System">
+                    <param id="0" name="Seconds">0.25</param>
+                </action>
+                <action id="0" name="Set text" sid="319414761198159" type="LoadingText">
+                    <param id="0" name="Text">&quot;LOADING..&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="692789065315745" type="System">
+                    <param id="0" name="Seconds">0.25</param>
+                </action>
+                <action id="0" name="Set text" sid="823077000395821" type="LoadingText">
+                    <param id="0" name="Text">&quot;LOADING...&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="885065208571338" type="System">
+                    <param id="0" name="Seconds">0.25</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="648222417274185">
+            <conditions>
+                <condition id="2" name="Is playing" sid="417651286147828" type="LoaderBlocker">
+                    <param id="0" name="Animation">&quot;Loaded&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="954307671004575" type="LoadingText">
+                    <param id="0" name="Text">&quot;LOCKED AND LOADED&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

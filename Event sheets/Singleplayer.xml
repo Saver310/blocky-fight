@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Singleplayer</name>
+    <events>
+        <include>Main</include>
+        <event-block sid="648885425892226">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="905083005124812" type="System" />
+            </conditions>
+            <actions>
+                <action behavior="ScrollTo" id="1" name="Set enabled" sid="687733826828053" type="Blocker">
+                    <param id="0" name="State">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="595859772050280">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="996276087554474" type="System" />
+            </conditions>
+            <actions>
+                <action id="-1" name="Set X" sid="603312532584671" type="BlockerMonologue">
+                    <param id="0" name="X">Blocker.X</param>
+                </action>
+                <action id="-2" name="Set Y" sid="761387182494533" type="BlockerMonologue">
+                    <param id="0" name="Y">Blocker.Y-15</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="778432827603071">
+            <conditions>
+                <condition id="0" name="On function" sid="599086748678763" type="Function">
+                    <param id="0" name="Name">&quot;BlockerRespawn&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="977212840537957" type="BlockerMonologue" />
+                <action id="-9" name="Destroy" sid="332124032884602" type="Blocker" />
+                <action id="-9" name="Destroy" sid="849711022965228" type="BlockerShoes" />
+                <action id="-9" name="Destroy" sid="672278369373592" type="BlockerClothes" />
+                <action id="-9" name="Destroy" sid="849615771195093" type="Hat" />
+                <action id="-9" name="Destroy" sid="928037703142896" type="Weapon" />
+                <action id="-9" name="Destroy" sid="166624107553071" type="BulletWound" />
+                <action id="-16" name="Wait" sid="749485037671982" type="System">
+                    <param id="0" name="Seconds">2</param>
+                </action>
+                <action id="-26" name="Restart layout" sid="806944962916669" type="System" />
+            </actions>
+        </event-block>
+        <event-block sid="999663842174473">
+            <conditions>
+                <condition id="-18" name="On created" sid="977963249782191" type="BlockerMonologue" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="483260848023142" type="BlockerMonologue">
+                    <param id="0" name="Text">&quot;Good lord, I had a rough sleep.&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="607861655650689" type="System">
+                    <param id="0" name="Seconds">2</param>
+                </action>
+                <action id="0" name="Set text" sid="527592891433738" type="BlockerMonologue">
+                    <param id="0" name="Text">&quot;Wait a damn minute.&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="269055693597282" type="System">
+                    <param id="0" name="Seconds">2</param>
+                </action>
+                <action id="0" name="Set text" sid="837192549376120" type="BlockerMonologue">
+                    <param id="0" name="Text">&quot;Damnit! The TV took me 2 hours to find on the scrapyard!&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="216964059104956" type="System">
+                    <param id="0" name="Seconds">2</param>
+                </action>
+                <action id="0" name="Set text" sid="870852578851179" type="BlockerMonologue">
+                    <param id="0" name="Text">&quot;I&apos;m definitely killing someone today.&quot;</param>
+                </action>
+                <action id="-16" name="Wait" sid="784316548771428" type="System">
+                    <param id="0" name="Seconds">2</param>
+                </action>
+                <action id="0" name="Set text" sid="116923117038888" type="BlockerMonologue">
+                    <param id="0" name="Text">&quot;&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="702035994513710">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="735899805867361" type="BlockerNPC">
+                    <param id="0" name="Object">Bullet</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="7" name="Play (by name)" sid="395625557892408" type="Audio">
+                    <param id="0" name="Folder">0</param>
+                    <param id="1" name="Audio file name">choose(&quot;BulletHit1&quot;,&quot;BulletHit2&quot;,&quot;BulletHit3&quot;,&quot;BulletHit4&quot;,&quot;BulletHit5&quot;)</param>
+                    <param id="3" name="Loop">0</param>
+                    <param id="4" name="Volume">-10</param>
+                    <param id="2" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="0" name="Play" sid="651552060111471" type="Audio">
+                    <param id="0" name="Audio file">PelvisSmash</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">-5</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="4" name="Set animation" sid="267262751836178" type="BlockerNPC">
+                    <param id="0" name="Animation">&quot;Death&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="11" name="Set collisions enabled" sid="281387663888969" type="BlockerNPC">
+                    <param id="0" name="Collisions">0</param>
+                </action>
+                <action id="-9" name="Destroy" sid="669052106347903" type="Bullet" />
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

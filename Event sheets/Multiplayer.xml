@@ -1,0 +1,2148 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Multiplayer</name>
+    <events>
+        <variable constant="1" name="GAME_NAME" sid="112321432551214" static="0" type="text">blocky-fight-lock-and-loaded</variable>
+        <variable constant="1" name="INSTANCE_NAME" sid="223546305371383" static="0" type="text">default</variable>
+        <variable constant="1" name="ROOM_NAME" sid="780740395031107" static="0" type="text">main</variable>
+        <event-group description="" sid="569287037784738" title="Message log">
+            <sub-events>
+                <event-block sid="853196999803548">
+                    <conditions>
+                        <condition id="0" name="On function" sid="591107509864964" type="Function">
+                            <param id="0" name="Name">&quot;AddLog&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Push" sid="644254742896394" type="LogMessages">
+                            <param id="0" name="Where">0</param>
+                            <param id="1" name="Value">Function.Param(0)</param>
+                            <param id="2" name="Axis">0</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <comment>If we are over 20 messages, delete the first (oldest) message.</comment>
+                        <event-block sid="708486269531529">
+                            <conditions>
+                                <condition id="7" name="Compare size" sid="364291571811880" type="LogMessages">
+                                    <param id="0" name="Axis">0</param>
+                                    <param id="1" name="Comparison">4</param>
+                                    <param id="2" name="Value">20</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="6" name="Pop" sid="827708961456727" type="LogMessages">
+                                    <param id="0" name="Where">1</param>
+                                    <param id="1" name="Axis">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>Reset the log text to empty - we will rebuild it completely from the array.</comment>
+                        <event-block sid="427584039312018">
+                            <conditions />
+                            <actions>
+                                <action id="0" name="Set text" sid="369818315036762" type="LogText">
+                                    <param id="0" name="Text">&quot;&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>For each element will repeat for each chat log we&apos;ve added in order, so we can append the message with a line break.</comment>
+                        <event-block sid="419946311651959">
+                            <conditions>
+                                <condition id="3" name="For each element" sid="727776432051222" type="LogMessages">
+                                    <param id="0" name="Axes">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="1" name="Append text" sid="233847820610557" type="LogText">
+                                    <param id="0" name="Text">LogMessages.CurValue &amp; newline</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <comment>Adding a chat message just calls &apos;AddLog&apos; with the alias and message, e.g. &lt;Joe&gt; Hello world!</comment>
+                <event-block sid="693783601725652">
+                    <conditions>
+                        <condition id="0" name="On function" sid="914145384909132" type="Function">
+                            <param id="0" name="Name">&quot;AddChat&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="393635881796708" type="Function">
+                            <param id="0" name="Name">&quot;AddLog&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;&lt;&quot; &amp; Function.Param(0) &amp; &quot;&gt; &quot; &amp; Function.Param(1)</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="475220526055025" title="Signalling">
+            <sub-events>
+                <event-block sid="213766022156953">
+                    <conditions>
+                        <condition id="-2" name="On start of layout" sid="299652106776305" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="15" name="Add client input value" sid="567647861574930" type="Multiplayer">
+                            <param id="0" name="Tag">&quot;Inputs&quot;</param>
+                            <param id="1" name="Precision">3</param>
+                            <param id="2" name="Interpolation">0</param>
+                        </action>
+                        <action id="11" name="Sync object" sid="444280227737446" type="Multiplayer">
+                            <param id="0" name="Object">Peer</param>
+                            <param id="1" name="Data">1</param>
+                            <param id="2" name="Precision">1</param>
+                            <param id="3" name="Bandwidth">0</param>
+                        </action>
+                        <action id="12" name="Sync instance variable" sid="559180342763674" type="Multiplayer">
+                            <param id="0" name="Object">Peer</param>
+                            <param id="1" name="Instance variable">Peer|Inputs</param>
+                            <param id="2" name="Precision">3</param>
+                            <param id="3" name="Interpolation">0</param>
+                            <param id="4" name="Client value tag">&quot;inputs&quot;</param>
+                        </action>
+                        <action id="12" name="Sync instance variable" sid="882275632007979" type="Multiplayer">
+                            <param id="0" name="Object">Peer</param>
+                            <param id="1" name="Instance variable">Peer|Health</param>
+                            <param id="2" name="Precision">3</param>
+                            <param id="3" name="Interpolation">0</param>
+                            <param id="4" name="Client value tag">&quot;&quot;</param>
+                        </action>
+                        <action id="11" name="Sync object" sid="775631881925969" type="Multiplayer">
+                            <param id="0" name="Object">PeerWeapon</param>
+                            <param id="1" name="Data">1</param>
+                            <param id="2" name="Precision">1</param>
+                            <param id="3" name="Bandwidth">0</param>
+                        </action>
+                        <action id="1" name="Connect" sid="875871290196398" type="Multiplayer">
+                            <param id="0" name="Server">&quot;wss://multiplayer.scirra.com&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="945869444204266">
+                    <conditions>
+                        <condition id="2" name="On connected" sid="249148457391923" type="Multiplayer" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="952450342235008" type="Function">
+                            <param id="0" name="Name">&quot;AddLog&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;Connected, logging in...&quot;</param>
+                        </action>
+                        <action id="4" name="Log in" sid="657277224291471" type="Multiplayer">
+                            <param id="0" name="Alias">MyUsername</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="750157592923099">
+                    <conditions>
+                        <condition id="4" name="On logged in" sid="201160434415767" type="Multiplayer" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Call function" sid="471399989047777" type="Function">
+                            <param id="0" name="Name">&quot;AddLog&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;Logged in with alias: &quot; &amp; Multiplayer.MyAlias &amp; &quot; (&quot; &amp; Multiplayer.MyID &amp; &quot;)&quot; &amp; newline &amp; &quot;Joining room...&quot;</param>
+                        </action>
+                        <action id="5" name="Join room" sid="716895350370980" type="Multiplayer">
+                            <param id="0" name="Game">GAME_NAME</param>
+                            <param id="1" name="Instance">INSTANCE_NAME</param>
+                            <param id="2" name="Room">ROOM_NAME</param>
+                            <param id="3" name="Max peers">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="715788683261561">
+                    <conditions>
+                        <condition id="5" name="On joined room" sid="542560453716314" type="Multiplayer" />
+                    </conditions>
+                    <actions />
+                    <sub-events>
+                        <comment>As the host, we also adopt the existing Peer object in the layout as our own player. We must set its peer ID to our own ID and tell the Multiplayer object it is associated with ourselves.</comment>
+                        <event-block sid="894083196204673">
+                            <conditions>
+                                <condition id="10" name="Is host" sid="413632267586604" type="Multiplayer" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="784358467328086" type="Function">
+                                    <param id="0" name="Name">&quot;AddLog&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;Joined room as host&quot;</param>
+                                </action>
+                                <action id="-12" name="Set group active" sid="450710214208626" type="System">
+                                    <param id="0" name="Group name">&quot;Host&quot;</param>
+                                    <param id="1" name="State">1</param>
+                                </action>
+                                <action id="-15" name="Set visible" sid="231331448097462" type="HostIndicator">
+                                    <param id="0" name="Visibility">1</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="958855383341148" type="Peer">
+                                    <param id="0" name="Instance variable">PeerID</param>
+                                    <param id="1" name="Value">Multiplayer.MyID</param>
+                                </action>
+                                <action id="13" name="Associate object with peer" sid="186525039437220" type="Multiplayer">
+                                    <param id="0" name="Object">Peer</param>
+                                    <param id="1" name="Peer ID">Multiplayer.MyID</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>When not the host, the Peer object already in the layout is destroyed. &apos;Sync object&apos; will create the peer for ourselves, possibly in a different location, and we&apos;ll associate it then. (See the &apos;Peer&apos; group&apos;s &apos;On object created&apos;)</comment>
+                        <event-block sid="277451682275902">
+                            <conditions>
+                                <condition id="-22" name="Else" sid="364470724112853" type="System" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="815079638287196" type="Function">
+                                    <param id="0" name="Name">&quot;AddLog&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;Joined room as peer&quot;</param>
+                                </action>
+                                <action id="-12" name="Set group active" sid="553256812995279" type="System">
+                                    <param id="0" name="Group name">&quot;Peer&quot;</param>
+                                    <param id="1" name="State">1</param>
+                                </action>
+                                <action id="0" name="Call function" sid="474064191684606" type="Function">
+                                    <param id="0" name="Name">&quot;AddLog&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;Attempting to establish connection to host...&quot;</param>
+                                </action>
+                                <action id="-9" name="Destroy" sid="768046938666974" type="Peer" />
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="501744636138863">
+                    <conditions>
+                        <condition id="3" name="On disconnected" sid="678127178981946" type="Multiplayer" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="273663922910932" type="Audio">
+                            <param id="0" name="Audio file">Exit</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                        <action id="0" name="Call function" sid="454586978424120" type="Function">
+                            <param id="0" name="Name">&quot;AddLog&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;Signalling disconnected&quot;</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="514688917211001" type="System">
+                            <param id="0" name="Seconds">2</param>
+                        </action>
+                        <action id="6" name="Leave room" sid="521071375601856" type="Multiplayer" />
+                        <action id="7" name="Disconnect" sid="178885056267378" type="Multiplayer" />
+                        <action id="2" name="Disconnect" sid="860966784402164" type="Multiplayer" />
+                        <action id="-2" name="Go to layout" sid="845666153355543" type="System">
+                            <param id="0" name="Layout">Login</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="912562762624776">
+                    <conditions>
+                        <condition id="1" name="On error" sid="359825989236841" type="Multiplayer" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="919129309424116" type="Audio">
+                            <param id="0" name="Audio file">Error</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                        <action id="0" name="Call function" sid="707840318174802" type="Function">
+                            <param id="0" name="Name">&quot;AddLog&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;Signalling error: &quot; &amp; Multiplayer.ErrorMessage</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="199139027159904" type="System">
+                            <param id="0" name="Seconds">2</param>
+                        </action>
+                        <action id="6" name="Leave room" sid="684935135091716" type="Multiplayer" />
+                        <action id="7" name="Disconnect" sid="178525421249538" type="Multiplayer" />
+                        <action id="2" name="Disconnect" sid="252669938153006" type="Multiplayer" />
+                        <action id="-2" name="Go to layout" sid="381171646579506" type="System">
+                            <param id="0" name="Layout">Login</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="851555145830355">
+                    <conditions>
+                        <condition id="6" name="On left room" sid="143707546369861" type="Multiplayer" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="790344484277918" type="Audio">
+                            <param id="0" name="Audio file">Exit</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                        <action id="0" name="Call function" sid="740487544583523" type="Function">
+                            <param id="0" name="Name">&quot;AddLog&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;Signalling: left room&quot;</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="968849317844218" type="System">
+                            <param id="0" name="Seconds">2</param>
+                        </action>
+                        <action id="6" name="Leave room" sid="442882312740167" type="Multiplayer" />
+                        <action id="7" name="Disconnect" sid="376190487964347" type="Multiplayer" />
+                        <action id="2" name="Disconnect" sid="692345093691683" type="Multiplayer" />
+                        <action id="-2" name="Go to layout" sid="816636508793590" type="System">
+                            <param id="0" name="Layout">Login</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="780292759716029">
+                    <conditions>
+                        <condition id="14" name="On kicked" sid="208701959530898" type="Multiplayer" />
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="726761420930621" type="Audio">
+                            <param id="0" name="Audio file">Exit</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                        <action id="0" name="Call function" sid="511666153828656" type="Function">
+                            <param id="0" name="Name">&quot;AddLog&quot;</param>
+                            <param id="1" name="Parameter {n}">&quot;Kicked (either could not connect to host or host quit)&quot;</param>
+                        </action>
+                        <action id="-16" name="Wait" sid="919558332096971" type="System">
+                            <param id="0" name="Seconds">2</param>
+                        </action>
+                        <action id="6" name="Leave room" sid="742092293066574" type="Multiplayer" />
+                        <action id="7" name="Disconnect" sid="217615627913597" type="Multiplayer" />
+                        <action id="2" name="Disconnect" sid="456604141116901" type="Multiplayer" />
+                        <action id="-2" name="Go to layout" sid="367875068750051" type="System">
+                            <param id="0" name="Layout">Login</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-group>
+        <event-group description="" sid="365087750108803" title="Game">
+            <sub-events>
+                <event-group description="" inactive="1" sid="475445724365598" title="Peer">
+                    <sub-events>
+                        <event-block sid="144838919567393">
+                            <conditions>
+                                <condition id="-18" name="On created" sid="638743745680698" type="Peer" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="349081428432150" type="Peer">
+                                    <param id="0" name="Instance variable">PeerID</param>
+                                    <param id="1" name="Value">Multiplayer.PeerID</param>
+                                </action>
+                                <action id="13" name="Associate object with peer" sid="577433179089800" type="Multiplayer">
+                                    <param id="0" name="Object">Peer</param>
+                                    <param id="1" name="Peer ID">Multiplayer.PeerID</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>If the peer that is created represents the local player, enable local input prediction for it. This means instead of being locked to whatever position it is on the host, it can start to move around. However as it moves it will correct its position if it starts to deviate from where it is on the host, so it&apos;s important both the peer and the host move it in exactly the same way.</comment>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="608285452805908">
+                            <conditions>
+                                <condition id="17" name="On client update" sid="231808880998965" type="Multiplayer" />
+                                <condition id="-7" name="Compare instance variable" sid="420374248699158" type="Peer">
+                                    <param id="0" name="Instance variable">PeerID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Multiplayer.MyID</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="14" name="Set client state" sid="302270475612837" type="Multiplayer">
+                                    <param id="0" name="Tag">&quot;inputs&quot;</param>
+                                    <param id="1" name="Value">Peer.Inputs</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <comment>For each of the five controls, update the corresponding bit in &apos;inputs&apos; to 1 for pressed or 0 for not pressed.</comment>
+                                <event-block any="1" sid="499831736040162">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="755428187346542" type="Keyboard">
+                                            <param id="0" name="Key">37</param>
+                                        </condition>
+                                        <condition id="2" name="Key is down" sid="822411944967679" type="Keyboard">
+                                            <param id="0" name="Key">65</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="375452273804104" type="Peer">
+                                            <param id="0" name="Instance variable">Inputs</param>
+                                            <param id="1" name="Value">setbit(Self.Inputs, 0, 1)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="534695979425260">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="251478718421458" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="220258101543886" type="Peer">
+                                            <param id="0" name="Instance variable">Inputs</param>
+                                            <param id="1" name="Value">setbit(Self.Inputs, 0, 0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block any="1" sid="400159167852213">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="532713650303092" type="Keyboard">
+                                            <param id="0" name="Key">38</param>
+                                        </condition>
+                                        <condition id="2" name="Key is down" sid="461871531612530" type="Keyboard">
+                                            <param id="0" name="Key">87</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="357655235788818" type="Peer">
+                                            <param id="0" name="Instance variable">Inputs</param>
+                                            <param id="1" name="Value">setbit(Self.Inputs, 1, 1)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="961743363326429">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="153561780823500" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="259726425635776" type="Peer">
+                                            <param id="0" name="Instance variable">Inputs</param>
+                                            <param id="1" name="Value">setbit(Self.Inputs, 1, 0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block any="1" sid="896600130028999">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="489357066712501" type="Keyboard">
+                                            <param id="0" name="Key">39</param>
+                                        </condition>
+                                        <condition id="2" name="Key is down" sid="361236673797902" type="Keyboard">
+                                            <param id="0" name="Key">68</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="290784353907081" type="Peer">
+                                            <param id="0" name="Instance variable">Inputs</param>
+                                            <param id="1" name="Value">setbit(Self.Inputs, 2, 1)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="156574342311763">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="935163462460400" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="245154968182095" type="Peer">
+                                            <param id="0" name="Instance variable">Inputs</param>
+                                            <param id="1" name="Value">setbit(Self.Inputs, 2, 0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block any="1" sid="907319057022632">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="463057914841231" type="Keyboard">
+                                            <param id="0" name="Key">70</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="448127202132782" type="Peer">
+                                            <param id="0" name="Instance variable">Inputs</param>
+                                            <param id="1" name="Value">setbit(Self.Inputs, 3, 1)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="852852545507094">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="160424221111802" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="787690221101247" type="Peer">
+                                            <param id="0" name="Instance variable">Inputs</param>
+                                            <param id="1" name="Value">setbit(Self.Inputs, 3, 0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="812304481737229">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="212254005932062" type="Keyboard">
+                                            <param id="0" name="Key">71</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="990128899480132" type="Peer">
+                                            <param id="0" name="Instance variable">Inputs</param>
+                                            <param id="1" name="Value">setbit(Self.Inputs, 4, 1)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="902505913879470">
+                                    <conditions>
+                                        <condition id="-22" name="Else" sid="533252654738392" type="System" />
+                                    </conditions>
+                                    <actions>
+                                        <action id="-10" name="Set value" sid="262408989185871" type="Peer">
+                                            <param id="0" name="Instance variable">Inputs</param>
+                                            <param id="1" name="Value">setbit(Self.Inputs, 4, 0)</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="590014274022493">
+                                    <conditions />
+                                    <actions>
+                                        <action id="14" name="Set client state" sid="161848104924019" type="Multiplayer">
+                                            <param id="0" name="Tag">&quot;Inputs&quot;</param>
+                                            <param id="1" name="Value">Peer.Inputs</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <comment>After we&apos;ve updated all the bits in the instance variable, set the client input state to the resulting value.</comment>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="286495918084335">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="383193434869403" type="Peer">
+                                    <param id="0" name="Instance variable">PeerID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Multiplayer.MyID</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="574277323779841">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="848667409146312" type="System">
+                                            <param id="0" name="First value">getbit(Peer.Inputs, 0)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="7" name="Simulate control" sid="591148101181012" type="Peer">
+                                            <param id="0" name="Control">0</param>
+                                        </action>
+                                        <action id="7" name="Set mirrored" sid="967309006169275" type="Peer">
+                                            <param id="0" name="State">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="660743757139051">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="338604955994686" type="System">
+                                            <param id="0" name="First value">getbit(Peer.Inputs, 1)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="7" name="Simulate control" sid="842597890057187" type="Peer">
+                                            <param id="0" name="Control">2</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="455397293686181">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="795607306105965" type="System">
+                                            <param id="0" name="First value">getbit(Peer.Inputs, 2)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="7" name="Simulate control" sid="820847165319823" type="Peer">
+                                            <param id="0" name="Control">1</param>
+                                        </action>
+                                        <action id="7" name="Set mirrored" sid="443425769526828" type="Peer">
+                                            <param id="0" name="State">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="308906346716805">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="101900977959881" type="PeerWeapon">
+                                    <param id="0" name="Instance variable">PeerID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Multiplayer.MyID</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="146974541962876">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="237462876411867" type="System">
+                                            <param id="0" name="First value">getbit(Peer.Inputs, 3)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                        <condition id="-4" name="Trigger once while true" sid="819487462263285" type="System" />
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="330952752003250">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="989225176985169" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="4" name="Set animation" sid="294798152478035" type="PeerWeapon">
+                                                    <param id="0" name="Animation">choose(&quot;FistsAttack&quot;,&quot;FistsAltAttack&quot;)</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="984963955192494">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="740753234614045" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Play" sid="267066165302216" type="Audio">
+                                                    <param id="0" name="Audio file">Pistol</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="522301669115234" type="PeerWeapon">
+                                                    <param id="0" name="Animation">&quot;PistolFire&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action id="5" name="Set frame" sid="238556376816101" type="PeerWeapon">
+                                                    <param id="0" name="Frame number">0</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="793971312185706" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Ammo</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="322064507055803" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="356740308689422" type="PeerWeapon">
+                                                    <param id="0" name="Object">BulletBit</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">2</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="529796985828309" type="BulletBit">
+                                                    <param id="0" name="Animation">&quot;Casing&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action behavior="Physics" id="0" name="Apply force" sid="499906777593445" type="BulletBit">
+                                                    <param id="0" name="Force X">-0.01</param>
+                                                    <param id="1" name="Force Y">-0.01</param>
+                                                    <param id="2" name="Image point">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="789592078370148">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="788804551870250" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">3</param>
+                                                </condition>
+                                                <condition id="-7" name="Compare instance variable" sid="526954499779032" type="Weapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Play" sid="697327331226081" type="Audio">
+                                                    <param id="0" name="Audio file">Shotgun</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="352558585394494" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="303906950053191" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Ammo</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="285443184785479" type="PeerWeapon">
+                                                    <param id="0" name="Animation">&quot;ShotgunFire&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="505525380514105" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="104546875504502" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="862589974698364" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="613903058433991" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="810937857283773" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="546945989805822" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="-16" name="Wait" sid="615774718091636" type="System">
+                                                    <param id="0" name="Seconds">0.5</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block sid="526101026386088">
+                                                    <conditions>
+                                                        <condition id="-7" name="Compare instance variable" sid="500671983865434" type="Weapon">
+                                                            <param id="0" name="Instance variable">Ammo</param>
+                                                            <param id="1" name="Comparison">4</param>
+                                                            <param id="2" name="Value">0</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Spawn another object" sid="253891941364932" type="PeerWeapon">
+                                                            <param id="0" name="Object">BulletBit</param>
+                                                            <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                            <param id="2" name="Image point">2</param>
+                                                        </action>
+                                                        <action id="4" name="Set animation" sid="824821922381971" type="BulletBit">
+                                                            <param id="0" name="Animation">&quot;Shell&quot;</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                        <action behavior="Physics" id="0" name="Apply force" sid="250154349702634" type="BulletBit">
+                                                            <param id="0" name="Force X">-0.01</param>
+                                                            <param id="1" name="Force Y">-0.01</param>
+                                                            <param id="2" name="Image point">0</param>
+                                                        </action>
+                                                        <action id="-16" name="Wait" sid="254228767497912" type="System">
+                                                            <param id="0" name="Seconds">0.2</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" sid="986229007900039" type="PeerWeapon">
+                                                            <param id="0" name="Instance variable">Fire</param>
+                                                            <param id="1" name="Value">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="462252934798621">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="157070703595468" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-10" name="Set value" sid="580076532936361" type="PeerWeapon">
+                                                            <param id="0" name="Instance variable">Fire</param>
+                                                            <param id="1" name="Value">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-block sid="594714034441369">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="233195956851588" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">4</param>
+                                                </condition>
+                                                <condition id="-7" name="Compare instance variable" sid="214295885928652" type="Weapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="558468260412877" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="219163255582361" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Ammo</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block sid="364395596032880">
+                                                    <conditions>
+                                                        <condition id="-7" name="Compare instance variable" sid="740053764999783" type="Weapon">
+                                                            <param id="0" name="Instance variable">Bloody</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Value">0</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="4" name="Set animation" sid="594068748475138" type="PeerWeapon">
+                                                            <param id="0" name="Animation">&quot;SwordAttack&quot;</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="400022420827694">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="339073471328700" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="4" name="Set animation" sid="944996562092493" type="PeerWeapon">
+                                                            <param id="0" name="Animation">&quot;SwordAttackBlood&quot;</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-block sid="521968729956010">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="383448838723917" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">5</param>
+                                                </condition>
+                                                <condition id="-7" name="Compare instance variable" sid="529180756026135" type="Weapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Play" sid="188434408993601" type="Audio">
+                                                    <param id="0" name="Audio file">RevolverFire</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="593653914278419" type="PeerWeapon">
+                                                    <param id="0" name="Animation">&quot;RevolverFire&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action id="5" name="Set frame" sid="465442637662433" type="PeerWeapon">
+                                                    <param id="0" name="Frame number">0</param>
+                                                </action>
+                                                <action id="-16" name="Wait" sid="888570384724537" type="System">
+                                                    <param id="0" name="Seconds">0.03</param>
+                                                </action>
+                                                <action id="5" name="Set frame" sid="749365427620149" type="PeerWeapon">
+                                                    <param id="0" name="Frame number">1</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="687343967976374" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="877287728126651" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Ammo</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="340561406691142" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="950886117501471" type="Bullet">
+                                                    <param id="0" name="Instance variable">Damage</param>
+                                                    <param id="1" name="Value">2.5</param>
+                                                </action>
+                                                <action id="-16" name="Wait" sid="724392529260601" type="System">
+                                                    <param id="0" name="Seconds">0.3</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="348542077398569" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="862185732309564">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="769093506220939" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">6</param>
+                                                </condition>
+                                                <condition id="-7" name="Compare instance variable" sid="264174983113761" type="Weapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Play" sid="545599880084666" type="Audio">
+                                                    <param id="0" name="Audio file">RocketLauncherFire</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="0" name="Play" sid="423168086010650" type="Audio">
+                                                    <param id="0" name="Audio file">RocketLauncherLoad</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="408645919149500" type="PeerWeapon">
+                                                    <param id="0" name="Animation">&quot;RocketLauncherFire&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="559640491437936" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="298575102686723" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Ammo</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="437876797416838" type="PeerWeapon">
+                                                    <param id="0" name="Object">Missle</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block sid="172796280033795">
+                                                    <conditions>
+                                                        <condition id="7" name="Is mirrored" sid="881603221347456" type="Weapon" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-8" name="Set angle" sid="144249846807117" type="Missle">
+                                                            <param id="0" name="Angle">Missle.Angle + 180</param>
+                                                        </action>
+                                                        <action id="-16" name="Wait" sid="198572935576217" type="System">
+                                                            <param id="0" name="Seconds">1</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" sid="379265278710502" type="Weapon">
+                                                            <param id="0" name="Instance variable">Fire</param>
+                                                            <param id="1" name="Value">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="684470511322102">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="550298925257563" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-8" name="Set angle" sid="195504717579338" type="Missle">
+                                                            <param id="0" name="Angle">Missle.Angle</param>
+                                                        </action>
+                                                        <action id="-16" name="Wait" sid="837537966052917" type="System">
+                                                            <param id="0" name="Seconds">1</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" sid="125265386905782" type="Weapon">
+                                                            <param id="0" name="Instance variable">Fire</param>
+                                                            <param id="1" name="Value">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" inactive="1" sid="703884494258735" title="Host">
+                    <sub-events>
+                        <event-block sid="736810650625882">
+                            <conditions>
+                                <condition id="11" name="On peer connected" sid="565482499196229" type="Multiplayer" />
+                            </conditions>
+                            <actions>
+                                <action id="-3" name="Create object" sid="980059938046704" type="System">
+                                    <param id="0" name="Object to create">Peer</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="X">random(50, LayoutWidth - 50)</param>
+                                    <param id="3" name="Y">-20</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="197873835405266" type="Peer">
+                                    <param id="0" name="Instance variable">PeerID</param>
+                                    <param id="1" name="Value">Multiplayer.PeerID</param>
+                                </action>
+                                <action id="13" name="Associate object with peer" sid="210734900604165" type="Multiplayer">
+                                    <param id="0" name="Object">Peer</param>
+                                    <param id="1" name="Peer ID">Multiplayer.PeerID</param>
+                                </action>
+                                <action id="0" name="Spawn another object" sid="483118145112244" type="Peer">
+                                    <param id="0" name="Object">PeerWeapon</param>
+                                    <param id="1" name="Layer">0</param>
+                                    <param id="2" name="Image point">0</param>
+                                </action>
+                                <action id="-10" name="Set value" sid="178538843100589" type="PeerWeapon">
+                                    <param id="0" name="Instance variable">PeerID</param>
+                                    <param id="1" name="Value">Multiplayer.PeerID</param>
+                                </action>
+                                <action id="13" name="Associate object with peer" sid="286127535293915" type="Multiplayer">
+                                    <param id="0" name="Object">PeerWeapon</param>
+                                    <param id="1" name="Peer ID">Multiplayer.PeerID</param>
+                                </action>
+                                <action behavior="Pin" id="0" name="Pin to object" sid="526741754476959" type="PeerWeapon">
+                                    <param id="0" name="Pin to">Peer</param>
+                                    <param id="1" name="Mode">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="173201570767476">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="119604276916275" type="Peer">
+                                    <param id="0" name="Instance variable">PeerID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Multiplayer.MyID</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block any="1" sid="383704912152936">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="664083353348103" type="Keyboard">
+                                            <param id="0" name="Key">37</param>
+                                        </condition>
+                                        <condition id="2" name="Key is down" sid="308490515309526" type="Keyboard">
+                                            <param id="0" name="Key">65</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="7" name="Simulate control" sid="204736112772962" type="Peer">
+                                            <param id="0" name="Control">0</param>
+                                        </action>
+                                        <action id="7" name="Set mirrored" sid="324848689336257" type="Peer">
+                                            <param id="0" name="State">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block any="1" sid="171366175830612">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="609802569866921" type="Keyboard">
+                                            <param id="0" name="Key">38</param>
+                                        </condition>
+                                        <condition id="2" name="Key is down" sid="705386722671151" type="Keyboard">
+                                            <param id="0" name="Key">87</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="7" name="Simulate control" sid="910925954900429" type="Peer">
+                                            <param id="0" name="Control">2</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block any="1" sid="729371864340086">
+                                    <conditions>
+                                        <condition id="2" name="Key is down" sid="738411275658316" type="Keyboard">
+                                            <param id="0" name="Key">39</param>
+                                        </condition>
+                                        <condition id="2" name="Key is down" sid="304173133483680" type="Keyboard">
+                                            <param id="0" name="Key">68</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="7" name="Simulate control" sid="682164926269907" type="Peer">
+                                            <param id="0" name="Control">1</param>
+                                        </action>
+                                        <action id="7" name="Set mirrored" sid="889788653909574" type="Peer">
+                                            <param id="0" name="State">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="635571269050339">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="887179968242875" type="PeerWeapon">
+                                    <param id="0" name="Instance variable">PeerID</param>
+                                    <param id="1" name="Comparison">0</param>
+                                    <param id="2" name="Value">Multiplayer.MyID</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="638139072367594">
+                                    <conditions>
+                                        <condition id="0" name="On key pressed" sid="323740999990612" type="Keyboard">
+                                            <param id="0" name="Key">70</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="134847304430199">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="831612042732955" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="4" name="Set animation" sid="133488950556541" type="PeerWeapon">
+                                                    <param id="0" name="Animation">choose(&quot;FistsAttack&quot;,&quot;FistsAltAttack&quot;)</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="975279270678536">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="633076852433811" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Play" sid="843534266442688" type="Audio">
+                                                    <param id="0" name="Audio file">Pistol</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="791004493218302" type="PeerWeapon">
+                                                    <param id="0" name="Animation">&quot;PistolFire&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action id="5" name="Set frame" sid="274257124163595" type="PeerWeapon">
+                                                    <param id="0" name="Frame number">0</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="224480443701952" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Ammo</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="852618931431734" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="599072152852178" type="PeerWeapon">
+                                                    <param id="0" name="Object">BulletBit</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">2</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="543257127174867" type="BulletBit">
+                                                    <param id="0" name="Animation">&quot;Casing&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action behavior="Physics" id="0" name="Apply force" sid="517325107498055" type="BulletBit">
+                                                    <param id="0" name="Force X">-0.01</param>
+                                                    <param id="1" name="Force Y">-0.01</param>
+                                                    <param id="2" name="Image point">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="401454801767024">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="812847106454903" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">3</param>
+                                                </condition>
+                                                <condition id="-7" name="Compare instance variable" sid="141430331047357" type="Weapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Play" sid="828919856541430" type="Audio">
+                                                    <param id="0" name="Audio file">Shotgun</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="502606965633644" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="886575109478158" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Ammo</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="842332340953150" type="PeerWeapon">
+                                                    <param id="0" name="Animation">&quot;ShotgunFire&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="432776272048532" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="929821908849525" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="349311233998868" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="882282703285787" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="524691579380496" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="157973910224596" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="-16" name="Wait" sid="810975190441039" type="System">
+                                                    <param id="0" name="Seconds">0.5</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block sid="472418487744882">
+                                                    <conditions>
+                                                        <condition id="-7" name="Compare instance variable" sid="230736617253422" type="Weapon">
+                                                            <param id="0" name="Instance variable">Ammo</param>
+                                                            <param id="1" name="Comparison">4</param>
+                                                            <param id="2" name="Value">0</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Spawn another object" sid="442706942571935" type="PeerWeapon">
+                                                            <param id="0" name="Object">BulletBit</param>
+                                                            <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                            <param id="2" name="Image point">2</param>
+                                                        </action>
+                                                        <action id="4" name="Set animation" sid="187388470870536" type="BulletBit">
+                                                            <param id="0" name="Animation">&quot;Shell&quot;</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                        <action behavior="Physics" id="0" name="Apply force" sid="383362664207951" type="BulletBit">
+                                                            <param id="0" name="Force X">-0.01</param>
+                                                            <param id="1" name="Force Y">-0.01</param>
+                                                            <param id="2" name="Image point">0</param>
+                                                        </action>
+                                                        <action id="-16" name="Wait" sid="644655718911317" type="System">
+                                                            <param id="0" name="Seconds">0.2</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" sid="554801183544346" type="PeerWeapon">
+                                                            <param id="0" name="Instance variable">Fire</param>
+                                                            <param id="1" name="Value">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="990655262356402">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="209742711830855" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-10" name="Set value" sid="770176550547160" type="PeerWeapon">
+                                                            <param id="0" name="Instance variable">Fire</param>
+                                                            <param id="1" name="Value">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-block sid="119614194495099">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="726669552376066" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">4</param>
+                                                </condition>
+                                                <condition id="-7" name="Compare instance variable" sid="472130554158904" type="Weapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="550362740739333" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="866942993535710" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Ammo</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block sid="936096684771877">
+                                                    <conditions>
+                                                        <condition id="-7" name="Compare instance variable" sid="595872503890270" type="Weapon">
+                                                            <param id="0" name="Instance variable">Bloody</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Value">0</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="4" name="Set animation" sid="343467609205156" type="PeerWeapon">
+                                                            <param id="0" name="Animation">&quot;SwordAttack&quot;</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="397873580925480">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="668235036974729" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="4" name="Set animation" sid="284960517764499" type="PeerWeapon">
+                                                            <param id="0" name="Animation">&quot;SwordAttackBlood&quot;</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-block sid="739084823639292">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="986188757581217" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">5</param>
+                                                </condition>
+                                                <condition id="-7" name="Compare instance variable" sid="488095333602601" type="Weapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Play" sid="732035966794785" type="Audio">
+                                                    <param id="0" name="Audio file">RevolverFire</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="155022497905384" type="PeerWeapon">
+                                                    <param id="0" name="Animation">&quot;RevolverFire&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action id="5" name="Set frame" sid="333458951729783" type="PeerWeapon">
+                                                    <param id="0" name="Frame number">0</param>
+                                                </action>
+                                                <action id="-16" name="Wait" sid="263164482710064" type="System">
+                                                    <param id="0" name="Seconds">0.03</param>
+                                                </action>
+                                                <action id="5" name="Set frame" sid="356280272843157" type="PeerWeapon">
+                                                    <param id="0" name="Frame number">1</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="725547071983195" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="533712872024837" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Ammo</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="985570712018633" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="383395057954151" type="Bullet">
+                                                    <param id="0" name="Instance variable">Damage</param>
+                                                    <param id="1" name="Value">2.5</param>
+                                                </action>
+                                                <action id="-16" name="Wait" sid="578034681364751" type="System">
+                                                    <param id="0" name="Seconds">0.3</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="417636041418511" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="154860251156467">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="378955679869113" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">6</param>
+                                                </condition>
+                                                <condition id="-7" name="Compare instance variable" sid="204517438583750" type="Weapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Play" sid="322955794806772" type="Audio">
+                                                    <param id="0" name="Audio file">RocketLauncherFire</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="0" name="Play" sid="893904322764104" type="Audio">
+                                                    <param id="0" name="Audio file">RocketLauncherLoad</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="210161401689861" type="PeerWeapon">
+                                                    <param id="0" name="Animation">&quot;RocketLauncherFire&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="159086580064141" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="426010367285980" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Ammo</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="685384968358153" type="PeerWeapon">
+                                                    <param id="0" name="Object">Missle</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block sid="915555777400464">
+                                                    <conditions>
+                                                        <condition id="7" name="Is mirrored" sid="705812735639120" type="Weapon" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-8" name="Set angle" sid="434795084011223" type="Missle">
+                                                            <param id="0" name="Angle">Missle.Angle + 180</param>
+                                                        </action>
+                                                        <action id="-16" name="Wait" sid="968521632654837" type="System">
+                                                            <param id="0" name="Seconds">1</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" sid="686092301841925" type="Weapon">
+                                                            <param id="0" name="Instance variable">Fire</param>
+                                                            <param id="1" name="Value">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="798594577234243">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="409469764949314" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-8" name="Set angle" sid="479436172196124" type="Missle">
+                                                            <param id="0" name="Angle">Missle.Angle</param>
+                                                        </action>
+                                                        <action id="-16" name="Wait" sid="263288504223956" type="System">
+                                                            <param id="0" name="Seconds">1</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" sid="151570563204722" type="Weapon">
+                                                            <param id="0" name="Instance variable">Fire</param>
+                                                            <param id="1" name="Value">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="167459806679356">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="682143100008324" type="Peer">
+                                    <param id="0" name="Instance variable">PeerID</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">Multiplayer.MyID</param>
+                                </condition>
+                                <condition id="-11" name="For Each" sid="205622324588879" type="System">
+                                    <param id="0" name="Object">Peer</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="379725367374815" type="Peer">
+                                    <param id="0" name="Instance variable">Inputs</param>
+                                    <param id="1" name="Value">Multiplayer.PeerState(Peer.PeerID, &quot;Inputs&quot;)</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block sid="625985609595616">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="324472446287339" type="System">
+                                            <param id="0" name="First value">getbit(Peer.Inputs, 0)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="7" name="Simulate control" sid="568100073336623" type="Peer">
+                                            <param id="0" name="Control">0</param>
+                                        </action>
+                                        <action id="7" name="Set mirrored" sid="899090974949093" type="Peer">
+                                            <param id="0" name="State">0</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="169139584381180">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="699664385529885" type="System">
+                                            <param id="0" name="First value">getbit(Peer.Inputs, 1)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="7" name="Simulate control" sid="308358835075210" type="Peer">
+                                            <param id="0" name="Control">2</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                                <event-block sid="255294243244893">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="476949975945421" type="System">
+                                            <param id="0" name="First value">getbit(Peer.Inputs, 2)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Platform" id="7" name="Simulate control" sid="875369747564421" type="Peer">
+                                            <param id="0" name="Control">1</param>
+                                        </action>
+                                        <action id="7" name="Set mirrored" sid="844491530791669" type="Peer">
+                                            <param id="0" name="State">1</param>
+                                        </action>
+                                    </actions>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="372536310323728">
+                            <conditions>
+                                <condition id="-7" name="Compare instance variable" sid="479941736051221" type="PeerWeapon">
+                                    <param id="0" name="Instance variable">PeerID</param>
+                                    <param id="1" name="Comparison">1</param>
+                                    <param id="2" name="Value">Multiplayer.MyID</param>
+                                </condition>
+                                <condition id="-11" name="For Each" sid="650023537333467" type="System">
+                                    <param id="0" name="Object">PeerWeapon</param>
+                                </condition>
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="731189062368390">
+                                    <conditions>
+                                        <condition id="-8" name="Compare two values" sid="738130806272574" type="System">
+                                            <param id="0" name="First value">getbit(Peer.Inputs, 3)</param>
+                                            <param id="1" name="Comparison">0</param>
+                                            <param id="2" name="Second value">1</param>
+                                        </condition>
+                                        <condition id="-4" name="Trigger once while true" sid="659631854531021" type="System" />
+                                    </conditions>
+                                    <actions />
+                                    <sub-events>
+                                        <event-block sid="893873052347244">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="315002859895182" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="4" name="Set animation" sid="850168357863884" type="PeerWeapon">
+                                                    <param id="0" name="Animation">choose(&quot;FistsAttack&quot;,&quot;FistsAltAttack&quot;)</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="903880634795945">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="638964124341925" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">1</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Play" sid="271239493195195" type="Audio">
+                                                    <param id="0" name="Audio file">Pistol</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="359971137610673" type="PeerWeapon">
+                                                    <param id="0" name="Animation">&quot;PistolFire&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action id="5" name="Set frame" sid="794894160941814" type="PeerWeapon">
+                                                    <param id="0" name="Frame number">0</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="310950751962310" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Ammo</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="439427704947075" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="765576784242609" type="PeerWeapon">
+                                                    <param id="0" name="Object">BulletBit</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">2</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="900791642890005" type="BulletBit">
+                                                    <param id="0" name="Animation">&quot;Casing&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action behavior="Physics" id="0" name="Apply force" sid="237015245152279" type="BulletBit">
+                                                    <param id="0" name="Force X">-0.01</param>
+                                                    <param id="1" name="Force Y">-0.01</param>
+                                                    <param id="2" name="Image point">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="525056642748108">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="678748383726273" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">3</param>
+                                                </condition>
+                                                <condition id="-7" name="Compare instance variable" sid="482709469971044" type="Weapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Play" sid="748099358545186" type="Audio">
+                                                    <param id="0" name="Audio file">Shotgun</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="328145599482024" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="474664187227939" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Ammo</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="798674289872882" type="PeerWeapon">
+                                                    <param id="0" name="Animation">&quot;ShotgunFire&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="106743015438653" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="651395117145329" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="390748618226153" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="296231802499669" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="906976172378598" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="642747434460533" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="-16" name="Wait" sid="252058137351169" type="System">
+                                                    <param id="0" name="Seconds">0.5</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block sid="631479822803788">
+                                                    <conditions>
+                                                        <condition id="-7" name="Compare instance variable" sid="976936083613483" type="Weapon">
+                                                            <param id="0" name="Instance variable">Ammo</param>
+                                                            <param id="1" name="Comparison">4</param>
+                                                            <param id="2" name="Value">0</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="0" name="Spawn another object" sid="836549377266061" type="PeerWeapon">
+                                                            <param id="0" name="Object">BulletBit</param>
+                                                            <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                            <param id="2" name="Image point">2</param>
+                                                        </action>
+                                                        <action id="4" name="Set animation" sid="956564394741914" type="BulletBit">
+                                                            <param id="0" name="Animation">&quot;Shell&quot;</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                        <action behavior="Physics" id="0" name="Apply force" sid="690062608612064" type="BulletBit">
+                                                            <param id="0" name="Force X">-0.01</param>
+                                                            <param id="1" name="Force Y">-0.01</param>
+                                                            <param id="2" name="Image point">0</param>
+                                                        </action>
+                                                        <action id="-16" name="Wait" sid="717119103370018" type="System">
+                                                            <param id="0" name="Seconds">0.2</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" sid="966344551239582" type="PeerWeapon">
+                                                            <param id="0" name="Instance variable">Fire</param>
+                                                            <param id="1" name="Value">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="300906452388563">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="510286893385454" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-10" name="Set value" sid="208504033645874" type="PeerWeapon">
+                                                            <param id="0" name="Instance variable">Fire</param>
+                                                            <param id="1" name="Value">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-block sid="811769595750551">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="806671812205288" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">4</param>
+                                                </condition>
+                                                <condition id="-7" name="Compare instance variable" sid="635744874874785" type="Weapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="-10" name="Set value" sid="492390845930922" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="999937228268684" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Ammo</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block sid="411889641396594">
+                                                    <conditions>
+                                                        <condition id="-7" name="Compare instance variable" sid="491741628852050" type="Weapon">
+                                                            <param id="0" name="Instance variable">Bloody</param>
+                                                            <param id="1" name="Comparison">0</param>
+                                                            <param id="2" name="Value">0</param>
+                                                        </condition>
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="4" name="Set animation" sid="808619997077374" type="PeerWeapon">
+                                                            <param id="0" name="Animation">&quot;SwordAttack&quot;</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="110924732628576">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="336385180854741" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="4" name="Set animation" sid="400294215444630" type="PeerWeapon">
+                                                            <param id="0" name="Animation">&quot;SwordAttackBlood&quot;</param>
+                                                            <param id="1" name="From">1</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                        <event-block sid="850584102370836">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="899733338178401" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">5</param>
+                                                </condition>
+                                                <condition id="-7" name="Compare instance variable" sid="975001067757574" type="Weapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Play" sid="959516954887364" type="Audio">
+                                                    <param id="0" name="Audio file">RevolverFire</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="413917272207484" type="PeerWeapon">
+                                                    <param id="0" name="Animation">&quot;RevolverFire&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action id="5" name="Set frame" sid="136034138650692" type="PeerWeapon">
+                                                    <param id="0" name="Frame number">0</param>
+                                                </action>
+                                                <action id="-16" name="Wait" sid="345484384154947" type="System">
+                                                    <param id="0" name="Seconds">0.03</param>
+                                                </action>
+                                                <action id="5" name="Set frame" sid="808149646239687" type="PeerWeapon">
+                                                    <param id="0" name="Frame number">1</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="834491752554499" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="824706617050460" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Ammo</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="412760879817430" type="PeerWeapon">
+                                                    <param id="0" name="Object">Bullet</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="661768995085277" type="Bullet">
+                                                    <param id="0" name="Instance variable">Damage</param>
+                                                    <param id="1" name="Value">2.5</param>
+                                                </action>
+                                                <action id="-16" name="Wait" sid="610635481296693" type="System">
+                                                    <param id="0" name="Seconds">0.3</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="747363586940450" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Value">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="113492668874445">
+                                            <conditions>
+                                                <condition id="-7" name="Compare instance variable" sid="189618495162742" type="Weapon">
+                                                    <param id="0" name="Instance variable">Weapon</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">6</param>
+                                                </condition>
+                                                <condition id="-7" name="Compare instance variable" sid="951741956673596" type="Weapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Comparison">0</param>
+                                                    <param id="2" name="Value">0</param>
+                                                </condition>
+                                            </conditions>
+                                            <actions>
+                                                <action id="0" name="Play" sid="216625162201105" type="Audio">
+                                                    <param id="0" name="Audio file">RocketLauncherFire</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="0" name="Play" sid="151897670495647" type="Audio">
+                                                    <param id="0" name="Audio file">RocketLauncherLoad</param>
+                                                    <param id="2" name="Loop">0</param>
+                                                    <param id="3" name="Volume">0</param>
+                                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                                </action>
+                                                <action id="4" name="Set animation" sid="664207619176323" type="PeerWeapon">
+                                                    <param id="0" name="Animation">&quot;RocketLauncherFire&quot;</param>
+                                                    <param id="1" name="From">1</param>
+                                                </action>
+                                                <action id="-10" name="Set value" sid="769366250777295" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Fire</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="-12" name="Subtract from" sid="765534235185641" type="PeerWeapon">
+                                                    <param id="0" name="Instance variable">Ammo</param>
+                                                    <param id="1" name="Value">1</param>
+                                                </action>
+                                                <action id="0" name="Spawn another object" sid="235978246032527" type="PeerWeapon">
+                                                    <param id="0" name="Object">Missle</param>
+                                                    <param id="1" name="Layer">&quot;Main&quot;</param>
+                                                    <param id="2" name="Image point">1</param>
+                                                </action>
+                                            </actions>
+                                            <sub-events>
+                                                <event-block sid="259980660162761">
+                                                    <conditions>
+                                                        <condition id="7" name="Is mirrored" sid="696990870540998" type="Weapon" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-8" name="Set angle" sid="378506217561491" type="Missle">
+                                                            <param id="0" name="Angle">Missle.Angle + 180</param>
+                                                        </action>
+                                                        <action id="-16" name="Wait" sid="603406136380563" type="System">
+                                                            <param id="0" name="Seconds">1</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" sid="660585956962354" type="Weapon">
+                                                            <param id="0" name="Instance variable">Fire</param>
+                                                            <param id="1" name="Value">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                                <event-block sid="841831957756890">
+                                                    <conditions>
+                                                        <condition id="-22" name="Else" sid="764937923477464" type="System" />
+                                                    </conditions>
+                                                    <actions>
+                                                        <action id="-8" name="Set angle" sid="102924593822210" type="Missle">
+                                                            <param id="0" name="Angle">Missle.Angle</param>
+                                                        </action>
+                                                        <action id="-16" name="Wait" sid="539409151478381" type="System">
+                                                            <param id="0" name="Seconds">1</param>
+                                                        </action>
+                                                        <action id="-10" name="Set value" sid="347262328044006" type="Weapon">
+                                                            <param id="0" name="Instance variable">Fire</param>
+                                                            <param id="1" name="Value">0</param>
+                                                        </action>
+                                                    </actions>
+                                                </event-block>
+                                            </sub-events>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="861747185077827">
+                            <conditions>
+                                <condition id="15" name="On peer message" sid="376623916659739" type="Multiplayer">
+                                    <param id="0" name="Tag">&quot;chat&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="9" name="Broadcast message" sid="834273008340499" type="Multiplayer">
+                                    <param id="0" name="From ID">Multiplayer.FromID</param>
+                                    <param id="1" name="Tag">&quot;chat&quot;</param>
+                                    <param id="2" name="Message">Multiplayer.Message</param>
+                                    <param id="3" name="Mode">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+                <event-group description="" sid="460650593910996" title="Common">
+                    <sub-events>
+                        <event-block sid="756322310765440">
+                            <conditions>
+                                <condition id="11" name="On peer connected" sid="320587317024586" type="Multiplayer" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="220485845676388" type="Function">
+                                    <param id="0" name="Name">&quot;AddLog&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;&apos;&quot; &amp; Multiplayer.PeerAlias &amp; &quot;&apos; joined&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="586738688431230">
+                            <conditions>
+                                <condition id="13" name="On peer disconnected" sid="827181313357577" type="Multiplayer" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="768259814188835" type="Function">
+                                    <param id="0" name="Name">&quot;AddLog&quot;</param>
+                                    <param id="1" name="Parameter {n}">&quot;&apos;&quot; &amp; Multiplayer.PeerAlias &amp; &quot;&apos; left&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block any="1" sid="455996379884230">
+                            <conditions>
+                                <condition id="0" name="On key pressed" sid="320275743165101" type="Keyboard">
+                                    <param id="0" name="Key">13</param>
+                                </condition>
+                                <condition id="0" name="On clicked" sid="777599526838821" type="ChatSend" />
+                            </conditions>
+                            <actions />
+                            <sub-events>
+                                <event-block sid="207313568699187">
+                                    <conditions>
+                                        <condition id="0" inverted="1" name="Compare text" sid="412722897884068" type="ChatTextBox">
+                                            <param id="0" name="Text">&quot;&quot;</param>
+                                            <param id="1" name="Case">0</param>
+                                        </condition>
+                                    </conditions>
+                                    <actions>
+                                        <action id="0" name="Call function" sid="659447132024915" type="Function">
+                                            <param id="0" name="Name">&quot;AddChat&quot;</param>
+                                            <param id="1" name="Parameter {n}">Multiplayer.MyAlias{###}ChatTextBox.Text</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="892237609924916">
+                                            <conditions>
+                                                <condition id="10" name="Is host" sid="691167113972291" type="Multiplayer" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="9" name="Broadcast message" sid="478615788600346" type="Multiplayer">
+                                                    <param id="0" name="From ID">Multiplayer.MyID</param>
+                                                    <param id="1" name="Tag">&quot;chat&quot;</param>
+                                                    <param id="2" name="Message">ChatTextBox.Text</param>
+                                                    <param id="3" name="Mode">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="289409046829283">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="816610194021465" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action id="8" name="Send message" sid="954056622167543" type="Multiplayer">
+                                                    <param id="0" name="Peer ID">&quot;&quot;</param>
+                                                    <param id="1" name="Tag">&quot;chat&quot;</param>
+                                                    <param id="2" name="Message">ChatTextBox.Text</param>
+                                                    <param id="3" name="Mode">0</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="513456844237416">
+                                            <conditions />
+                                            <actions>
+                                                <action id="0" name="Set text" sid="134394840466546" type="ChatTextBox">
+                                                    <param id="0" name="Text">&quot;&quot;</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <comment>Received chat messages are added to the log.</comment>
+                        <event-block sid="170445922921628">
+                            <conditions>
+                                <condition id="15" name="On peer message" sid="427914251134965" type="Multiplayer">
+                                    <param id="0" name="Tag">&quot;chat&quot;</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Call function" sid="398714042023939" type="Function">
+                                    <param id="0" name="Name">&quot;AddChat&quot;</param>
+                                    <param id="1" name="Parameter {n}">Multiplayer.FromAlias{###}Multiplayer.Message</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <comment>When we left click, unfocus the chat text box and send button. Otherwise after clicking back in the game our keyboard inputs will still go to the chat text box.</comment>
+                        <event-block sid="302226908607607">
+                            <conditions>
+                                <condition id="0" name="On click" sid="107656774785961" type="Mouse">
+                                    <param id="0" name="Mouse button">0</param>
+                                    <param id="1" name="Click type">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="8" name="Set unfocused" sid="359874170116413" type="ChatTextBox" />
+                                <action id="8" name="Set unfocused" sid="963334207973233" type="ChatSend" />
+                            </actions>
+                        </event-block>
+                        <event-block sid="780115416037261">
+                            <conditions>
+                                <condition behavior="Platform" id="2" name="Is on floor" sid="446643444273878" type="Peer" />
+                            </conditions>
+                            <actions>
+                                <action behavior="Rotate" id="0" name="Set speed" sid="558217074026025" type="Peer">
+                                    <param id="0" name="Speed">0</param>
+                                </action>
+                                <action id="-8" name="Set angle" sid="157886347980861" type="Peer">
+                                    <param id="0" name="Angle">0</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="771912038519332">
+                            <conditions>
+                                <condition behavior="Platform" id="5" name="On jump" sid="463662198087405" type="Peer" />
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Play" sid="145756552847176" type="Audio">
+                                    <param id="0" name="Audio file">plyrjmp8</param>
+                                    <param id="2" name="Loop">0</param>
+                                    <param id="3" name="Volume">-10</param>
+                                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                                </action>
+                            </actions>
+                            <sub-events>
+                                <event-block any="1" sid="897581963657739">
+                                    <conditions>
+                                        <condition behavior="Platform" id="4" name="Is falling" sid="817347690656202" type="Peer" />
+                                        <condition behavior="Platform" id="3" name="Is jumping" sid="136230192910948" type="Peer" />
+                                    </conditions>
+                                    <actions>
+                                        <action behavior="Rotate" id="0" name="Set speed" sid="226224861482262" type="Peer">
+                                            <param id="0" name="Speed">500</param>
+                                        </action>
+                                    </actions>
+                                    <sub-events>
+                                        <event-block sid="131697575283804">
+                                            <conditions>
+                                                <condition id="7" name="Is mirrored" sid="200400428318418" type="Peer" />
+                                            </conditions>
+                                            <actions>
+                                                <action behavior="Rotate" id="0" name="Set speed" sid="422451719636673" type="Peer">
+                                                    <param id="0" name="Speed">-500</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                        <event-block sid="923088419184466">
+                                            <conditions>
+                                                <condition id="-22" name="Else" sid="911057735312998" type="System" />
+                                            </conditions>
+                                            <actions>
+                                                <action behavior="Rotate" id="0" name="Set speed" sid="686814108650920" type="Peer">
+                                                    <param id="0" name="Speed">500</param>
+                                                </action>
+                                            </actions>
+                                        </event-block>
+                                    </sub-events>
+                                </event-block>
+                            </sub-events>
+                        </event-block>
+                        <event-block sid="718952420676237">
+                            <conditions>
+                                <condition behavior="Flash" id="0" name="Is flashing" sid="681363886096672" type="Peer" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="935205962151017" type="Peer">
+                                    <param id="0" name="Instance variable">Health</param>
+                                    <param id="1" name="Value">1337</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="561215181954728">
+                            <conditions>
+                                <condition behavior="Flash" id="1" name="On flash ended" sid="295101441240283" type="Peer" />
+                            </conditions>
+                            <actions>
+                                <action id="-10" name="Set value" sid="313022712160861" type="Peer">
+                                    <param id="0" name="Instance variable">Health</param>
+                                    <param id="1" name="Value">5</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-group>
+            </sub-events>
+        </event-group>
+        <event-block sid="328370132263395">
+            <conditions>
+                <condition id="2" name="Key is down" sid="844718471446002" type="Keyboard">
+                    <param id="0" name="Key">27</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="6" name="Leave room" sid="961239359027763" type="Multiplayer" />
+                <action id="7" name="Disconnect" sid="425620360672458" type="Multiplayer" />
+                <action id="2" name="Disconnect" sid="965842911085659" type="Multiplayer" />
+            </actions>
+        </event-block>
+        <event-block sid="453418659129531">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="558593676014407" type="System" />
+            </conditions>
+            <actions>
+                <action id="0" name="Spawn another object" sid="681643203414144" type="Peer">
+                    <param id="0" name="Object">PeerWeapon</param>
+                    <param id="1" name="Layer">0</param>
+                    <param id="2" name="Image point">0</param>
+                </action>
+                <action behavior="Pin" id="0" name="Pin to object" sid="963624780716539" type="PeerWeapon">
+                    <param id="0" name="Pin to">Peer</param>
+                    <param id="1" name="Mode">0</param>
+                </action>
+            </actions>
+        </event-block>
+    </events>
+</c2eventsheet>

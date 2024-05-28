@@ -1,0 +1,2906 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<c2eventsheet>
+    <!--All the 'name' attributes are ignored by Construct 2 - they are there for readability only.-->
+    <name>Main Menu</name>
+    <events>
+        <variable constant="0" name="Language" sid="123428160547323" static="0" type="text">English</variable>
+        <variable constant="0" name="MyUsername" sid="512204111802136" static="0" type="text"></variable>
+        <variable constant="0" name="BlockerHat" sid="564303521338056" static="0" type="number">0</variable>
+        <variable constant="0" name="BlockerHat2" sid="218796442596131" static="0" type="number">0</variable>
+        <variable constant="0" name="BlockerClothes" sid="935910099356991" static="0" type="number">0</variable>
+        <variable constant="0" name="BlockerClothes2" sid="690524115274124" static="0" type="number">0</variable>
+        <variable constant="0" name="BlockerCrispiness" sid="455868917125070" static="0" type="number">100</variable>
+        <variable constant="0" name="BlockerShoes" sid="661590933403727" static="0" type="number">0</variable>
+        <variable constant="0" name="BlockerShoes2" sid="171617716049629" static="0" type="number">0</variable>
+        <variable constant="0" name="GameTime" sid="589420032169157" static="0" type="number">210</variable>
+        <variable constant="0" name="PointLimit" sid="827100154514025" static="0" type="number">15</variable>
+        <variable constant="0" name="Lives" sid="539178078410736" static="0" type="number">5</variable>
+        <variable constant="0" name="Walljump" sid="395752709616492" static="0" type="number">0</variable>
+        <variable constant="0" name="FireRain" sid="154582455318110" static="0" type="number">0</variable>
+        <variable constant="0" name="GoofyFire" sid="778825443962321" static="0" type="number">0</variable>
+        <variable constant="0" name="BloodLevel" sid="124612164988506" static="0" type="number">1</variable>
+        <variable constant="0" name="Music" sid="142679759699172" static="0" type="text">None</variable>
+        <event-block sid="826385181408091">
+            <conditions>
+                <condition id="-2" name="On start of layout" sid="193546094150859" type="System" />
+            </conditions>
+            <actions>
+                <action id="16" name="Set title" sid="385699912191969" type="NWjs">
+                    <param id="0" name="Title">&quot;Blocky Fight: Lock and Loaded&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="934406294809476">
+            <conditions>
+                <condition id="5" inverted="1" name="Is tag playing" sid="436199129596351" type="Audio">
+                    <param id="0" name="Tag">&quot;menumus&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="538062797124171" type="Audio">
+                    <param id="0" name="Audio file">Catastrophy</param>
+                    <param id="2" name="Loop">1</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;menumus&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="219336905985861">
+            <conditions>
+                <condition id="-1" name="Every tick" sid="400023761949481" type="System" />
+            </conditions>
+            <actions>
+                <action id="5" name="Set frame" sid="653405341904156" type="HatPreview">
+                    <param id="0" name="Frame number">HatSlider.Value</param>
+                </action>
+                <action id="5" name="Set frame" sid="629245560186462" type="HatPreview2">
+                    <param id="0" name="Frame number">HatSlider2.Value</param>
+                </action>
+                <action id="5" name="Set frame" sid="433363591813001" type="ClothesPreview">
+                    <param id="0" name="Frame number">ClothesSlider.Value</param>
+                </action>
+                <action id="5" name="Set frame" sid="403272549184106" type="ClothesPreview2">
+                    <param id="0" name="Frame number">ClothesSlider2.Value</param>
+                </action>
+                <action id="0" name="Set text" sid="578887172025156" type="Lives">
+                    <param id="0" name="Text">LivesSlider.Value &amp; &quot; HP&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="345651170816960" type="LeftP1Binding">
+                    <param id="0" name="Text">Keyboard.StringFromKeyCode(LeftP1)</param>
+                </action>
+                <action id="0" name="Set text" sid="871960504038204" type="RightP1Binding">
+                    <param id="0" name="Text">Keyboard.StringFromKeyCode(RightP1)</param>
+                </action>
+                <action id="0" name="Set text" sid="684772344863642" type="UpP1Binding">
+                    <param id="0" name="Text">Keyboard.StringFromKeyCode(UpP1)</param>
+                </action>
+                <action id="0" name="Set text" sid="707190017573289" type="DownP1Binding">
+                    <param id="0" name="Text">Keyboard.StringFromKeyCode(DownP1)</param>
+                </action>
+                <action id="0" name="Set text" sid="468170329233728" type="FireP1Binding">
+                    <param id="0" name="Text">Keyboard.StringFromKeyCode(FireP1)</param>
+                </action>
+                <action id="0" name="Set text" sid="856728493557788" type="ThrowP1Binding">
+                    <param id="0" name="Text">Keyboard.StringFromKeyCode(ThrowP1)</param>
+                </action>
+                <action id="0" name="Set text" sid="944505457789503" type="LeftP2Binding">
+                    <param id="0" name="Text">Keyboard.StringFromKeyCode(LeftP2)</param>
+                </action>
+                <action id="0" name="Set text" sid="100328120264850" type="RightP2Binding">
+                    <param id="0" name="Text">Keyboard.StringFromKeyCode(RightP2)</param>
+                </action>
+                <action id="0" name="Set text" sid="413791946482338" type="UpP2Binding">
+                    <param id="0" name="Text">Keyboard.StringFromKeyCode(UpP2)</param>
+                </action>
+                <action id="0" name="Set text" sid="894609266924176" type="DownP2Binding">
+                    <param id="0" name="Text">Keyboard.StringFromKeyCode(DownP2)</param>
+                </action>
+                <action id="0" name="Set text" sid="931233274810524" type="FireP2Binding">
+                    <param id="0" name="Text">Keyboard.StringFromKeyCode(FireP2)</param>
+                </action>
+                <action id="0" name="Set text" sid="902711471738399" type="ThrowP2Binding">
+                    <param id="0" name="Text">Keyboard.StringFromKeyCode(ThrowP2)</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="196820254964704">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="673754493247471" type="System">
+                            <param id="0" name="Variable">Language</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;English&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="762156787656707" type="SecondsText">
+                            <param id="0" name="Text">TimeSlider.Value &amp; &quot; seconds&quot;</param>
+                        </action>
+                        <action id="0" name="Set text" sid="368284738624713" type="MinutesText">
+                            <param id="0" name="Text">round(TimeSlider.Value / 60 * 100) / 100 &amp; &quot; minutes&quot;</param>
+                        </action>
+                        <action id="0" name="Set text" sid="992189153847901" type="PointsText">
+                            <param id="0" name="Text">PointLimitSlider.Value &amp; &quot; points&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="799672051760158">
+                            <conditions>
+                                <condition id="1" name="Compare value" sid="939783321695457" type="BloodLevelSlider">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="338460969969972" type="BloodLevelStatus">
+                                    <param id="0" name="Text">&quot;None&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="596174570967776">
+                            <conditions>
+                                <condition id="1" name="Compare value" sid="235021290230057" type="BloodLevelSlider">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="833193860268958" type="BloodLevelStatus">
+                                    <param id="0" name="Text">&quot;Normal&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="262472097483401">
+                            <conditions>
+                                <condition id="1" name="Compare value" sid="846640180752036" type="BloodLevelSlider">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="485445907987408" type="BloodLevelStatus">
+                                    <param id="0" name="Text">&quot;Extra&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="988062692680098">
+                            <conditions>
+                                <condition id="1" name="Compare value" sid="583105091488330" type="BloodLevelSlider">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Value">3</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="344076377410863" type="BloodLevelStatus">
+                                    <param id="0" name="Text">&quot;More&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="176522566093819">
+                            <conditions>
+                                <condition id="1" name="Compare value" sid="527630846817292" type="BloodLevelSlider">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Value">4</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="193816973644806" type="BloodLevelStatus">
+                                    <param id="0" name="Text">&quot;Absurd&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="975216502783513">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="707593404030180" type="System">
+                            <param id="0" name="Variable">Language</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Polish&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="109867356523019" type="SecondsText">
+                            <param id="0" name="Text">TimeSlider.Value &amp; &quot; sekund&quot;</param>
+                        </action>
+                        <action id="0" name="Set text" sid="388128452590477" type="MinutesText">
+                            <param id="0" name="Text">round(TimeSlider.Value / 60 * 100) / 100 &amp; &quot; minut&quot;</param>
+                        </action>
+                        <action id="0" name="Set text" sid="181438640763896" type="PointsText">
+                            <param id="0" name="Text">PointLimitSlider.Value &amp; &quot; punktów&quot;</param>
+                        </action>
+                    </actions>
+                    <sub-events>
+                        <event-block sid="466316249481865">
+                            <conditions>
+                                <condition id="1" name="Compare value" sid="447704439836876" type="BloodLevelSlider">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Value">0</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="353648679391593" type="BloodLevelStatus">
+                                    <param id="0" name="Text">&quot;Brak&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="342253670320136">
+                            <conditions>
+                                <condition id="1" name="Compare value" sid="588415801004243" type="BloodLevelSlider">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Value">1</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="446735208434161" type="BloodLevelStatus">
+                                    <param id="0" name="Text">&quot;Zwykły&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="796448836555678">
+                            <conditions>
+                                <condition id="1" name="Compare value" sid="616275030814577" type="BloodLevelSlider">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Value">2</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="131367473490039" type="BloodLevelStatus">
+                                    <param id="0" name="Text">&quot;Dodatkowy&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="929447114543360">
+                            <conditions>
+                                <condition id="1" name="Compare value" sid="758952902466886" type="BloodLevelSlider">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Value">3</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="976338620082759" type="BloodLevelStatus">
+                                    <param id="0" name="Text">&quot;Więcej&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                        <event-block sid="410523854513185">
+                            <conditions>
+                                <condition id="1" name="Compare value" sid="304911804133900" type="BloodLevelSlider">
+                                    <param id="0" name="Comparison">0</param>
+                                    <param id="1" name="Value">4</param>
+                                </condition>
+                            </conditions>
+                            <actions>
+                                <action id="0" name="Set text" sid="647566170153186" type="BloodLevelStatus">
+                                    <param id="0" name="Text">&quot;Absurdalny&quot;</param>
+                                </action>
+                            </actions>
+                        </event-block>
+                    </sub-events>
+                </event-block>
+                <event-block sid="113061463187913">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="694573569991874" type="System">
+                            <param id="0" name="Variable">Language</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Russian&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="831983618059770" type="SecondsText">
+                            <param id="0" name="Text">TimeSlider.Value &amp; &quot; секунды&quot;</param>
+                        </action>
+                        <action id="0" name="Set text" sid="282668564290748" type="MinutesText">
+                            <param id="0" name="Text">round(TimeSlider.Value / 60 * 100) / 100 &amp; &quot; минуты&quot;</param>
+                        </action>
+                        <action id="0" name="Set text" sid="512527898399883" type="PointsText">
+                            <param id="0" name="Text">PointLimitSlider.Value &amp; &quot; убивает&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="761213187797311">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="456882025912325" type="System">
+                            <param id="0" name="Variable">Language</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">&quot;Turkish&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Set text" sid="385090382228735" type="SecondsText">
+                            <param id="0" name="Text">TimeSlider.Value &amp; &quot; saniye&quot;</param>
+                        </action>
+                        <action id="0" name="Set text" sid="421718633314341" type="MinutesText">
+                            <param id="0" name="Text">round(TimeSlider.Value / 60 * 100) / 100 &amp; &quot; dakika&quot;</param>
+                        </action>
+                        <action id="0" name="Set text" sid="644210632833270" type="PointsText">
+                            <param id="0" name="Text">PointLimitSlider.Value &amp; &quot; puan&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="425408596382068">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="578818313387406" type="System">
+                    <param id="0" name="Variable">Language</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;English&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="437154666784722" type="StageSelect">
+                    <param id="0" name="Text">&quot;Stage Select&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="599492694872350" type="AccessorySelect">
+                    <param id="0" name="Text">&quot;Accessory Select&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="337003363269981" type="Base">
+                    <param id="0" name="Text">&quot;Base&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="738143247307195" type="House">
+                    <param id="0" name="Text">&quot;House&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="623865285829042" type="Back">
+                    <param id="0" name="Text">&quot;Back&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="867989799160567" type="Randomize">
+                    <param id="0" name="Text">&quot;Randomize&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="608193128785097" type="Randomize2">
+                    <param id="0" name="Text">&quot;Randomize&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="998543331500642" type="GameSettings">
+                    <param id="0" name="Text">&quot;Game Settings&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="205214102216738" type="Settings">
+                    <param id="0" name="Text">&quot;Settings&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="880688522266203" type="Credits">
+                    <param id="0" name="Text">&quot;Credits&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="669425365844378" type="SaveSettings">
+                    <param id="0" name="Text">&quot;Save Settings&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="697062376087657" type="LoadSettings">
+                    <param id="0" name="Text">&quot;Load Settings&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="929385242256766" type="ResetBindings">
+                    <param id="0" name="Text">&quot;Default Controls&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="648364281651819" type="Walljump">
+                    <param id="0" name="Text">&quot;Walljumping&quot;</param>
+                </action>
+                <action id="1" name="Set tooltip" sid="577854127123337" type="Walljump">
+                    <param id="0" name="Tooltip">&quot;The walls are incredibly sticky today.&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="522697804499747" type="FireRain">
+                    <param id="0" name="Text">&quot;Rain of Fire&quot;</param>
+                </action>
+                <action id="1" name="Set tooltip" sid="893672825813125" type="FireRain">
+                    <param id="0" name="Tooltip">&quot;Get inside!&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="466792684071705" type="Quit">
+                    <param id="0" name="Text">&quot;Quit&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="275107648244425" type="BindLeftP1">
+                    <param id="0" name="Text">&quot;Left&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="260817411043967" type="BindLeftP2">
+                    <param id="0" name="Text">&quot;Left&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="775991757092956" type="BindRightP1">
+                    <param id="0" name="Text">&quot;Right&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="785377966790711" type="BindRightP2">
+                    <param id="0" name="Text">&quot;Right&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="603178285285682" type="BindUpP1">
+                    <param id="0" name="Text">&quot;Up&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="123934716109207" type="BindUpP2">
+                    <param id="0" name="Text">&quot;Up&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="935675580543598" type="BindDownP1">
+                    <param id="0" name="Text">&quot;Down&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="469713087348700" type="BindDownP2">
+                    <param id="0" name="Text">&quot;Down&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="594988588314421" type="BindFireP1">
+                    <param id="0" name="Text">&quot;Fire&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="928906601182718" type="BindFireP2">
+                    <param id="0" name="Text">&quot;Fire&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="702494454057721" type="BindThrowP1">
+                    <param id="0" name="Text">&quot;Throw&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="410871936775900" type="BindThrowP2">
+                    <param id="0" name="Text">&quot;Throw&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="682205885198885" type="TimeLimitText">
+                    <param id="0" name="Text">&quot;Time Limit&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="761321121328562" type="PointLimitText">
+                    <param id="0" name="Text">&quot;Point Limit&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="416495093253602" type="LivesText">
+                    <param id="0" name="Text">&quot;Health&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="911868813312596" type="MusicText">
+                    <param id="0" name="Text">&quot;Music&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="354297773531523" type="LanguageText">
+                    <param id="0" name="Text">&quot;Language&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="887692333894972" type="BindingP1Title">
+                    <param id="0" name="Text">&quot;Player 1 Controls&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="161407147517550" type="BindingP2Title">
+                    <param id="0" name="Text">&quot;Player 2 Controls&quot;</param>
+                </action>
+                <action id="5" name="Set frame" sid="447131838043727" type="Logo">
+                    <param id="0" name="Frame number">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="127475557429264">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="331530814366505" type="System">
+                    <param id="0" name="Variable">Language</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;Polish&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="102238746439415" type="StageSelect">
+                    <param id="0" name="Text">&quot;Wybór Poziomów&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="842951215334605" type="AccessorySelect">
+                    <param id="0" name="Text">&quot;Wybór Akcesorii&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="165037500241491" type="Base">
+                    <param id="0" name="Text">&quot;Baza&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="375124409225641" type="House">
+                    <param id="0" name="Text">&quot;Dom&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="782793007094138" type="Back">
+                    <param id="0" name="Text">&quot;Wróć&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="171377054053590" type="Randomize">
+                    <param id="0" name="Text">&quot;Losuj&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="205841251362663" type="Randomize2">
+                    <param id="0" name="Text">&quot;Losuj&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="193074263998425" type="GameSettings">
+                    <param id="0" name="Text">&quot;Ustawienia Gry&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="967721477921258" type="Settings">
+                    <param id="0" name="Text">&quot;Ustawienia&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="324807615401812" type="Credits">
+                    <param id="0" name="Text">&quot;Podziękowania&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="328100266341875" type="SaveSettings">
+                    <param id="0" name="Text">&quot;Zapisz Ustawienia&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="399810913263541" type="LoadSettings">
+                    <param id="0" name="Text">&quot;Wczytaj Ustawienia&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="913556981575892" type="ResetBindings">
+                    <param id="0" name="Text">&quot;Domyślne Kontrolki&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="139678579793877" type="Walljump">
+                    <param id="0" name="Text">&quot;Skakanie po Ścianach&quot;</param>
+                </action>
+                <action id="1" name="Set tooltip" sid="119112718806104" type="Walljump">
+                    <param id="0" name="Tooltip">&quot;Ściany są naprawdę klejące dzisiaj.&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="241540694037957" type="FireRain">
+                    <param id="0" name="Text">&quot;Deszcz Ognia&quot;</param>
+                </action>
+                <action id="1" name="Set tooltip" sid="405878942652748" type="FireRain">
+                    <param id="0" name="Tooltip">&quot;Wsiadaj do środka!&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="417454462505165" type="Quit">
+                    <param id="0" name="Text">&quot;Wyjdź&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="710527624829262" type="BindLeftP1">
+                    <param id="0" name="Text">&quot;Lewo&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="866951508062494" type="BindLeftP2">
+                    <param id="0" name="Text">&quot;Lewo&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="539394866968277" type="BindRightP1">
+                    <param id="0" name="Text">&quot;Prawo&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="531240314650950" type="BindRightP2">
+                    <param id="0" name="Text">&quot;Prawo&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="801117744846172" type="BindUpP1">
+                    <param id="0" name="Text">&quot;Góra&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="750947776817270" type="BindUpP2">
+                    <param id="0" name="Text">&quot;Góra&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="776925502416096" type="BindDownP1">
+                    <param id="0" name="Text">&quot;Dół&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="275794254005116" type="BindDownP2">
+                    <param id="0" name="Text">&quot;Dół&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="878685521914262" type="BindFireP1">
+                    <param id="0" name="Text">&quot;Strzał&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="760893585461631" type="BindFireP2">
+                    <param id="0" name="Text">&quot;Strzał&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="798157205892423" type="BindThrowP1">
+                    <param id="0" name="Text">&quot;Rzut&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="438013030114009" type="BindThrowP2">
+                    <param id="0" name="Text">&quot;Rzut&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="766102061921459" type="TimeLimitText">
+                    <param id="0" name="Text">&quot;Limit Czasu&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="449119981852978" type="PointLimitText">
+                    <param id="0" name="Text">&quot;Limit Punktów&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="347418326816200" type="LivesText">
+                    <param id="0" name="Text">&quot;Zdrowie&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="107000167375469" type="MusicText">
+                    <param id="0" name="Text">&quot;Muzyka&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="565519940778577" type="LanguageText">
+                    <param id="0" name="Text">&quot;Język&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="651741650237882" type="BindingP1Title">
+                    <param id="0" name="Text">&quot;Kontrolki Gracza 1&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="381469990964013" type="BindingP2Title">
+                    <param id="0" name="Text">&quot;Kontrolki Gracza 2&quot;</param>
+                </action>
+                <action id="5" name="Set frame" sid="326355394315308" type="Logo">
+                    <param id="0" name="Frame number">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="541964221526648">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="753160839781594" type="System">
+                    <param id="0" name="Variable">Language</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;Russian&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="311059118007154" type="StageSelect">
+                    <param id="0" name="Text">&quot;Выбор Уровня&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="857709624219966" type="AccessorySelect">
+                    <param id="0" name="Text">&quot;Выбор Аксессуаров&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="256454344977941" type="Base">
+                    <param id="0" name="Text">&quot;База&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="280901714575722" type="House">
+                    <param id="0" name="Text">&quot;Дом&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="442466878774830" type="Back">
+                    <param id="0" name="Text">&quot;Вернуться&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="410632669387230" type="Randomize">
+                    <param id="0" name="Text">&quot;Рандомизировать&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="934172498919981" type="Randomize2">
+                    <param id="0" name="Text">&quot;Рандомизировать&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="666685892480652" type="GameSettings">
+                    <param id="0" name="Text">&quot;Настройки Игры&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="334901496073758" type="Settings">
+                    <param id="0" name="Text">&quot;Настройки&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="155255712373167" type="Credits">
+                    <param id="0" name="Text">&quot;Создатели&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="903129120927901" type="SaveSettings">
+                    <param id="0" name="Text">&quot;Сохранить&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="804495233810335" type="LoadSettings">
+                    <param id="0" name="Text">&quot;Вернуть Сохранённые Настройки&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="495125508104708" type="ResetBindings">
+                    <param id="0" name="Text">&quot;Сбросить&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="207514919848040" type="Walljump">
+                    <param id="0" name="Text">&quot;Прыжок от стены&quot;</param>
+                </action>
+                <action id="1" name="Set tooltip" sid="600432852028514" type="Walljump">
+                    <param id="0" name="Tooltip">&quot;Сегодня почему-то стены липкие.&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="197570564992959" type="FireRain">
+                    <param id="0" name="Text">&quot;Дождь Огня&quot;</param>
+                </action>
+                <action id="1" name="Set tooltip" sid="346825541365705" type="FireRain">
+                    <param id="0" name="Tooltip">&quot;Во внутрь!&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="717049612611674" type="Quit">
+                    <param id="0" name="Text">&quot;Оставлять&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="898992518586192" type="BindLeftP1">
+                    <param id="0" name="Text">&quot;Лево&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="675998608813108" type="BindLeftP2">
+                    <param id="0" name="Text">&quot;Лево&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="768703738798214" type="BindRightP1">
+                    <param id="0" name="Text">&quot;Право&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="916444250829595" type="BindRightP2">
+                    <param id="0" name="Text">&quot;Право&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="379970115327152" type="BindUpP1">
+                    <param id="0" name="Text">&quot;Верх&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="538098208721246" type="BindUpP2">
+                    <param id="0" name="Text">&quot;Верх&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="265451504079556" type="BindDownP1">
+                    <param id="0" name="Text">&quot;Вниз&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="444603983605130" type="BindDownP2">
+                    <param id="0" name="Text">&quot;Вниз&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="652099165547323" type="BindFireP1">
+                    <param id="0" name="Text">&quot;Стрелять&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="875408541736332" type="BindFireP2">
+                    <param id="0" name="Text">&quot;Стрелять&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="476522669355703" type="BindThrowP1">
+                    <param id="0" name="Text">&quot;Бросить&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="982628336251355" type="BindThrowP2">
+                    <param id="0" name="Text">&quot;Бросить&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="668685109881469" type="TimeLimitText">
+                    <param id="0" name="Text">&quot;Лимит Времени&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="731351036390217" type="PointLimitText">
+                    <param id="0" name="Text">&quot;Лимит Убийств&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="693932478529554" type="LivesText">
+                    <param id="0" name="Text">&quot;Здоровье&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="221364416272036" type="MusicText">
+                    <param id="0" name="Text">&quot;Музыка&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="859269035401433" type="LanguageText">
+                    <param id="0" name="Text">&quot;Язык&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="377526348553142" type="BindingP1Title">
+                    <param id="0" name="Text">&quot;Управление Игроком 1&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="831966711031534" type="BindingP2Title">
+                    <param id="0" name="Text">&quot;Управление Игроком 2&quot;</param>
+                </action>
+                <action id="5" name="Set frame" sid="975042529001289" type="Logo">
+                    <param id="0" name="Frame number">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="344812791518990">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="132363155238706" type="System">
+                    <param id="0" name="Variable">Language</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">&quot;Turkish&quot;</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="990543502249698" type="StageSelect">
+                    <param id="0" name="Text">&quot;Harita Seçimi&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="356324716173589" type="AccessorySelect">
+                    <param id="0" name="Text">&quot;Aksesuar Seçimi&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="148094424046012" type="Base">
+                    <param id="0" name="Text">&quot;Karargah&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="430954247289728" type="House">
+                    <param id="0" name="Text">&quot;Ev&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="262908522994091" type="Back">
+                    <param id="0" name="Text">&quot;Geri&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="635705254256506" type="Randomize">
+                    <param id="0" name="Text">&quot;Rastgele&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="482102413008843" type="Randomize2">
+                    <param id="0" name="Text">&quot;Rastgele&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="723460138182257" type="GameSettings">
+                    <param id="0" name="Text">&quot;Oyun Ayarları&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="478281866007267" type="TimeLimitText">
+                    <param id="0" name="Text">&quot;Süre Sınırı&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="578906275492781" type="PointLimitText">
+                    <param id="0" name="Text">&quot;Puan Sınırı&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="696396105253529" type="LivesText">
+                    <param id="0" name="Text">&quot;Sağlık&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="581339634151538" type="MusicText">
+                    <param id="0" name="Text">&quot;Müzik&quot;</param>
+                </action>
+                <action id="0" name="Set text" sid="668733728205578" type="LanguageText">
+                    <param id="0" name="Text">&quot;Dil&quot;</param>
+                </action>
+                <action id="5" name="Set frame" sid="225097975073459" type="Logo">
+                    <param id="0" name="Frame number">3</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="913804564498806">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="898544185911502" type="LanguageList">
+                    <param id="0" name="Text to compare">&quot;English&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="258414280176027" type="System">
+                    <param id="0" name="Variable">Language</param>
+                    <param id="1" name="Value">&quot;English&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="561641517356714">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="465261070061909" type="LanguageList">
+                    <param id="0" name="Text to compare">&quot;Polski&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="271506253744321" type="System">
+                    <param id="0" name="Variable">Language</param>
+                    <param id="1" name="Value">&quot;Polish&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="860365329490671">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="526852704120196" type="LanguageList">
+                    <param id="0" name="Text to compare">&quot;Русский&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="539433525355908" type="System">
+                    <param id="0" name="Variable">Language</param>
+                    <param id="1" name="Value">&quot;Russian&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="697160847629223">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="771089231773271" type="LanguageList">
+                    <param id="0" name="Text to compare">&quot;Türkçe&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="491171790926886" type="System">
+                    <param id="0" name="Variable">Language</param>
+                    <param id="1" name="Value">&quot;Turkish&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="942251394392511">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="811254152132180" type="MusicList">
+                    <param id="0" name="Text to compare">&quot;None&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="234408928803295" type="System">
+                    <param id="0" name="Variable">Music</param>
+                    <param id="1" name="Value">&quot;None&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="573160603492819">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="119293942835679" type="MusicList">
+                    <param id="0" name="Text to compare">&quot;Catastrophy&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="144812886370445" type="System">
+                    <param id="0" name="Variable">Music</param>
+                    <param id="1" name="Value">&quot;Catastrophy&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="830744977889888">
+            <conditions>
+                <condition id="4" name="Compare selected item text" sid="821289495666955" type="MusicList">
+                    <param id="0" name="Text to compare">&quot;Old Main Menu&quot;</param>
+                    <param id="1" name="Case sensitivity">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="307056335157057" type="System">
+                    <param id="0" name="Variable">Music</param>
+                    <param id="1" name="Value">&quot;Main Menu&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="471299293446596">
+            <conditions>
+                <condition id="-6" name="Every X seconds" sid="444761594618363" type="System">
+                    <param id="0" name="Interval (seconds)">float(random(0.2,0.7))</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-3" name="Create object" sid="578362698783367" type="System">
+                    <param id="0" name="Object to create">Dropper</param>
+                    <param id="1" name="Layer">&quot;Background&quot;</param>
+                    <param id="2" name="X">int(random(0,LayoutWidth))</param>
+                    <param id="3" name="Y">-128</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="519094587402314">
+            <conditions>
+                <condition id="-18" name="On created" sid="609852340383192" type="Dropper" />
+            </conditions>
+            <actions>
+                <action id="5" name="Set frame" sid="310228344695318" type="Dropper">
+                    <param id="0" name="Frame number">int(random(0,12))</param>
+                </action>
+                <action id="-8" name="Set angle" sid="355299115776029" type="Dropper">
+                    <param id="0" name="Angle">int(random(0,360))</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="724357902904106">
+            <conditions>
+                <condition id="-2" name="Compare Y" sid="373220228357404" type="Dropper">
+                    <param id="0" name="Comparison">5</param>
+                    <param id="1" name="Y co-ordinate">LayoutHeight + 128</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Destroy" sid="884165262922393" type="Dropper" />
+            </actions>
+        </event-block>
+        <event-block disabled="1" sid="100112145489342">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="604717641211424" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">Logo</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-15" name="Set visible" sid="745185303714459" type="Logo">
+                    <param id="0" name="Visibility">0</param>
+                </action>
+                <action id="-16" name="Wait" sid="784866335362637" type="System">
+                    <param id="0" name="Seconds">0.2</param>
+                </action>
+                <action id="-15" name="Set visible" sid="944685048424316" type="Logo">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="991066998851471">
+            <conditions>
+                <condition id="0" name="On clicked" sid="646109659680303" type="MenuButtons" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="862466244021266">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="592581140489556" type="System">
+                            <param id="0" name="Variable">WajsSiti</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="811286569708532" type="Audio">
+                            <param id="0" name="Audio file">buttonclickrelease</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="246688922467120">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="256072560976785" type="System">
+                            <param id="0" name="Variable">WajsSiti</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="548074391142862" type="Audio">
+                            <param id="0" name="Audio file">GTAVCEnter</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="185753210254892">
+            <conditions>
+                <condition id="7" name="Cursor is over object" sid="989954256836484" type="Mouse">
+                    <param id="0" name="Object">MenuButtons</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="886887003001806" type="System" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="637026357472086">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="344361508964978" type="System">
+                            <param id="0" name="Variable">WajsSiti</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="604871911415122" type="Audio">
+                            <param id="0" name="Audio file">buttonrollover</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="357628476267981">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="819754019356448" type="System">
+                            <param id="0" name="Variable">WajsSiti</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="6" name="Stop" sid="553089450039273" type="Audio">
+                            <param id="0" name="Tag">&quot;dembass&quot;</param>
+                        </action>
+                        <action id="0" name="Play" sid="944149521380309" type="Audio">
+                            <param id="0" name="Audio file">GTAVCScroll</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;dembass&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="475992390267068">
+                    <conditions />
+                    <actions />
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="244718961434842">
+            <conditions>
+                <condition id="0" name="On clicked" sid="261490110972042" type="StageSelect" />
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="964640703727554" type="System">
+                    <param id="0" name="Layout">Stage Select</param>
+                </action>
+                <action id="-36" name="Save" sid="979076010227062" type="System">
+                    <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="385236565817084">
+            <conditions>
+                <condition id="0" name="On clicked" sid="694199664243033" type="AccessorySelect" />
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="386935344232020" type="System">
+                    <param id="0" name="Layout">Hat Select</param>
+                </action>
+                <action id="-36" name="Save" sid="815127360951357" type="System">
+                    <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="555644710810351">
+            <conditions>
+                <condition id="0" name="On clicked" sid="214578764564984" type="Base" />
+            </conditions>
+            <actions>
+                <action id="-36" name="Save" sid="945308957759468" type="System">
+                    <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="733934764572998" type="System">
+                    <param id="0" name="Variable">BlockerScore</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="757779799442468" type="System">
+                    <param id="0" name="Variable">BlockerScore2</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="842349676868330" type="System">
+                    <param id="0" name="Layout">Layout 1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="739280419780895">
+            <conditions>
+                <condition id="0" name="On clicked" sid="901402377574165" type="House" />
+            </conditions>
+            <actions>
+                <action id="-36" name="Save" sid="624348152129724" type="System">
+                    <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                </action>
+                <action id="-9" name="Set value" sid="861228190918448" type="System">
+                    <param id="0" name="Variable">BlockerScore</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="714426584585822" type="System">
+                    <param id="0" name="Variable">BlockerScore2</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="598611798628148" type="System">
+                    <param id="0" name="Layout">House</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="141867735913288">
+            <conditions>
+                <condition id="0" name="On clicked" sid="164595446099859" type="Back" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="436889492499160">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="588902736328204" type="System">
+                            <param id="0" name="Variable">WajsSiti</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="334592332476244" type="Audio">
+                            <param id="0" name="Audio file">buttonclickrelease</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="999066127568327">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="742978095797458" type="System">
+                            <param id="0" name="Variable">WajsSiti</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="418472655906060" type="Audio">
+                            <param id="0" name="Audio file">GTAVCBack</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="767876186852901">
+                    <conditions />
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="110787206606507" type="System">
+                            <param id="0" name="Layout">Main Menu</param>
+                        </action>
+                        <action id="-36" name="Save" sid="291315787208226" type="System">
+                            <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="468474984518483">
+            <conditions>
+                <condition id="0" name="On clicked" sid="228029249657883" type="GameSettingsBack" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="912287529208938">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="606050106823660" type="System">
+                            <param id="0" name="Variable">WajsSiti</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="864965361734396" type="Audio">
+                            <param id="0" name="Audio file">buttonclickrelease</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="640947443731099">
+                    <conditions>
+                        <condition id="-14" name="Compare variable" sid="277351775232752" type="System">
+                            <param id="0" name="Variable">WajsSiti</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="0" name="Play" sid="447205934680524" type="Audio">
+                            <param id="0" name="Audio file">GTAVCBack</param>
+                            <param id="2" name="Loop">0</param>
+                            <param id="3" name="Volume">0</param>
+                            <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="393613231901551">
+                    <conditions />
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="166369946210387" type="System">
+                            <param id="0" name="Layout">Stage Select</param>
+                        </action>
+                        <action id="-36" name="Save" sid="537601173248884" type="System">
+                            <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="662598444882318">
+            <conditions>
+                <condition id="17" name="On back button" sid="196542656453320" type="Browser" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="957854565602909">
+                    <conditions>
+                        <condition id="-8" name="Compare two values" sid="118270145685850" type="System">
+                            <param id="0" name="First value">LayoutName</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Second value">&quot;Game Settings&quot;</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="426235758742025" type="System">
+                            <param id="0" name="Layout">Stage Select</param>
+                        </action>
+                        <action id="-36" name="Save" sid="566254773002639" type="System">
+                            <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="856083697344541">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="877972615808585" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="-2" name="Go to layout" sid="813926184008702" type="System">
+                            <param id="0" name="Layout">Main Menu</param>
+                        </action>
+                        <action id="-36" name="Save" sid="578853067966933" type="System">
+                            <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="935702027180723">
+            <conditions>
+                <condition id="0" name="On clicked" sid="761259704467736" type="GameSettings" />
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="997335353375352" type="System">
+                    <param id="0" name="Layout">Game Settings</param>
+                </action>
+                <action id="-36" name="Save" sid="556395236599878" type="System">
+                    <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="900789536648495">
+            <conditions>
+                <condition id="0" name="On clicked" sid="148581396212576" type="Randomize" />
+            </conditions>
+            <actions>
+                <action id="3" name="Set value" sid="132368427771588" type="HatSlider">
+                    <param id="0" name="Value">random(HatSlider.Minimum,HatSlider.Maximum)</param>
+                </action>
+                <action id="3" name="Set value" sid="397746319479962" type="ClothesSlider">
+                    <param id="0" name="Value">random(ClothesSlider.Minimum,ClothesSlider.Maximum)</param>
+                </action>
+                <action id="5" name="Set frame" sid="985655797814060" type="ShoeButton">
+                    <param id="0" name="Frame number">choose(0,1)</param>
+                </action>
+                <action id="-9" name="Set value" sid="552217362387877" type="System">
+                    <param id="0" name="Variable">BlockerHat</param>
+                    <param id="1" name="Value">HatSlider.Value</param>
+                </action>
+                <action id="-9" name="Set value" sid="223161755953198" type="System">
+                    <param id="0" name="Variable">BlockerClothes</param>
+                    <param id="1" name="Value">ClothesSlider.Value</param>
+                </action>
+                <action id="-36" name="Save" sid="176520345005691" type="System">
+                    <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="494852943151671">
+            <conditions>
+                <condition id="0" name="On clicked" sid="439021536916685" type="Randomize2" />
+            </conditions>
+            <actions>
+                <action id="3" name="Set value" sid="139282312318261" type="HatSlider2">
+                    <param id="0" name="Value">random(HatSlider2.Minimum,HatSlider2.Maximum)</param>
+                </action>
+                <action id="3" name="Set value" sid="532898459429500" type="ClothesSlider2">
+                    <param id="0" name="Value">random(ClothesSlider2.Minimum,ClothesSlider2.Maximum)</param>
+                </action>
+                <action id="5" name="Set frame" sid="646985709404343" type="ShoeButton2">
+                    <param id="0" name="Frame number">choose(0,1)</param>
+                </action>
+                <action id="-9" name="Set value" sid="500817790718962" type="System">
+                    <param id="0" name="Variable">BlockerHat2</param>
+                    <param id="1" name="Value">HatSlider2.Value</param>
+                </action>
+                <action id="-9" name="Set value" sid="138791595043937" type="System">
+                    <param id="0" name="Variable">BlockerClothes2</param>
+                    <param id="1" name="Value">ClothesSlider2.Value</param>
+                </action>
+                <action id="-36" name="Save" sid="614457309377211" type="System">
+                    <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="656347463346694">
+            <conditions>
+                <condition id="0" name="On clicked" sid="464589182931190" type="Settings" />
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="752940846002213" type="System">
+                    <param id="0" name="Layout">Settings</param>
+                </action>
+                <action id="-36" name="Save" sid="639124964292829" type="System">
+                    <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="658060386508374">
+            <conditions>
+                <condition id="0" name="On clicked" sid="689406361311720" type="DebugGoodness" />
+            </conditions>
+            <actions>
+                <action id="-36" name="Save" sid="349614091455328" type="System">
+                    <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                </action>
+                <action id="-2" name="Go to layout" sid="670359377390107" type="System">
+                    <param id="0" name="Layout">The Place you Call Home</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="242972590927552">
+            <conditions>
+                <condition id="0" name="On clicked" sid="768279937534182" type="Credits" />
+            </conditions>
+            <actions>
+                <action id="-2" name="Go to layout" sid="405800595744875" type="System">
+                    <param id="0" name="Layout">Credits</param>
+                </action>
+                <action id="-36" name="Save" sid="413258136927810" type="System">
+                    <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="122938704160352">
+            <conditions>
+                <condition id="0" name="On clicked" sid="221938728591548" type="Quit" />
+            </conditions>
+            <actions>
+                <action id="-36" name="Save" sid="116502592225761" type="System">
+                    <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                </action>
+                <action id="1" name="Close" sid="791502808728726" type="Browser" />
+            </actions>
+        </event-block>
+        <event-block sid="719498623391035">
+            <conditions>
+                <condition id="1" name="Is checked" sid="611602383654196" type="Walljump" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="369843072644962" type="System">
+                    <param id="0" name="Variable">Walljump</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="224422611254591">
+            <conditions>
+                <condition id="1" inverted="1" name="Is checked" sid="646814745826072" type="Walljump" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="453622691433355" type="System">
+                    <param id="0" name="Variable">Walljump</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="829398390549164">
+            <conditions>
+                <condition id="1" name="Is checked" sid="107384736092471" type="FireRain" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="330391526130493" type="System">
+                    <param id="0" name="Variable">FireRain</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="770938044237208">
+            <conditions>
+                <condition id="1" inverted="1" name="Is checked" sid="267311411925388" type="FireRain" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="426265097618332" type="System">
+                    <param id="0" name="Variable">FireRain</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="507822015812296">
+            <conditions>
+                <condition id="1" name="Is checked" sid="358245373019004" type="StupidAI" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="409553189375521" type="System">
+                    <param id="0" name="Variable">GoofyFire</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="252675616576703">
+            <conditions>
+                <condition id="1" inverted="1" name="Is checked" sid="259498510172014" type="StupidAI" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="798247230865551" type="System">
+                    <param id="0" name="Variable">GoofyFire</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="608449339015186">
+            <conditions>
+                <condition id="2" name="On changed" sid="993123846258797" type="HatSlider" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="890934912060691" type="System">
+                    <param id="0" name="Variable">BlockerHat</param>
+                    <param id="1" name="Value">HatSlider.Value</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="878042950244281">
+            <conditions>
+                <condition id="2" name="On changed" sid="755959285055890" type="HatSlider2" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="344395967117837" type="System">
+                    <param id="0" name="Variable">BlockerHat2</param>
+                    <param id="1" name="Value">HatSlider2.Value</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="922532168986203">
+            <conditions>
+                <condition id="2" name="On changed" sid="333203170273138" type="ClothesSlider" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="469231985794150" type="System">
+                    <param id="0" name="Variable">BlockerClothes</param>
+                    <param id="1" name="Value">ClothesSlider.Value</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="542591571831446">
+            <conditions>
+                <condition id="2" name="On changed" sid="971077972152781" type="ClothesSlider2" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="526826248239948" type="System">
+                    <param id="0" name="Variable">BlockerClothes2</param>
+                    <param id="1" name="Value">ClothesSlider2.Value</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="455077683719181">
+            <conditions>
+                <condition id="2" name="On changed" sid="959398052748144" type="TimeSlider" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="963945241359775" type="System">
+                    <param id="0" name="Variable">GameTime</param>
+                    <param id="1" name="Value">TimeSlider.Value</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="956809119198361">
+            <conditions>
+                <condition id="2" name="On changed" sid="561883264706144" type="PointLimitSlider" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="137756951235539" type="System">
+                    <param id="0" name="Variable">PointLimit</param>
+                    <param id="1" name="Value">PointLimitSlider.Value</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="507172560091984">
+            <conditions>
+                <condition id="2" name="On changed" sid="929409706320126" type="LivesSlider" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="728765344889619" type="System">
+                    <param id="0" name="Variable">Lives</param>
+                    <param id="1" name="Value">LivesSlider.Value</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="292780775373267">
+            <conditions>
+                <condition id="2" name="On changed" sid="427874741922828" type="BloodLevelSlider" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="151358978261168" type="System">
+                    <param id="0" name="Variable">BloodLevel</param>
+                    <param id="1" name="Value">BloodLevelSlider.Value</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="295097047054364">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="290594966266593" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">ShoeButton</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="971031253276594" type="Audio">
+                    <param id="0" name="Audio file">buttonclickrelease</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="788175602819486">
+                    <conditions>
+                        <condition id="3" name="Compare frame" sid="864850914782201" type="ShoeButton">
+                            <param id="0" name="Comparison">0</param>
+                            <param id="1" name="Number">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="982942184762486" type="ShoeButton">
+                            <param id="0" name="Frame number">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="536921348786175">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="955183263195763" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="193878016243133" type="ShoeButton">
+                            <param id="0" name="Frame number">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="168135922817451">
+            <conditions>
+                <condition id="6" name="On object clicked" sid="405679328474009" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                    <param id="1" name="Click type">0</param>
+                    <param id="2" name="Object clicked">ShoeButton2</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="0" name="Play" sid="228807197154546" type="Audio">
+                    <param id="0" name="Audio file">buttonclickrelease</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+            </actions>
+            <sub-events>
+                <event-block sid="518812930810579">
+                    <conditions>
+                        <condition id="3" name="Compare frame" sid="235623419826642" type="ShoeButton2">
+                            <param id="0" name="Comparison">0</param>
+                            <param id="1" name="Number">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="657459271699234" type="ShoeButton2">
+                            <param id="0" name="Frame number">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="119081760732303">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="986255637107612" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="5" name="Set frame" sid="310363374670823" type="ShoeButton2">
+                            <param id="0" name="Frame number">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="656842429388118">
+            <conditions>
+                <condition id="1" name="On text changed" sid="692236958950486" type="NameInput" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="242633607166919">
+                    <conditions>
+                        <condition id="0" name="Compare text" sid="116574829604033" type="NameInput">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                            <param id="1" name="Case">0</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Set enabled" sid="653982350633146" type="LockNLoad">
+                            <param id="0" name="Mode">0</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="146634881566839">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="368077225651342" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="3" name="Set enabled" sid="576057931635043" type="LockNLoad">
+                            <param id="0" name="Mode">1</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="468526380672075">
+            <conditions>
+                <condition id="0" name="On clicked" sid="416005054488279" type="LockNLoad" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="410734085363224">
+                    <conditions>
+                        <condition id="0" inverted="1" name="Compare text" sid="269000211037285" type="NameInput">
+                            <param id="0" name="Text">&quot;&quot;</param>
+                            <param id="1" name="Case">0</param>
+                        </condition>
+                        <condition id="12" name="Supports multiplayer" sid="293788801468298" type="Multiplayer" />
+                    </conditions>
+                    <actions>
+                        <action id="-9" name="Set value" sid="766497582850488" type="System">
+                            <param id="0" name="Variable">MyUsername</param>
+                            <param id="1" name="Value">NameInput.Text</param>
+                        </action>
+                        <action id="-2" name="Go to layout" sid="754510099492031" type="System">
+                            <param id="0" name="Layout">Multiplayer</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <event-block sid="293876456282433">
+            <conditions>
+                <condition id="3" name="Compare frame" sid="364980088200039" type="ShoeButton">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="Number">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="299030114136825" type="System">
+                    <param id="0" name="Variable">BlockerShoes</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="5" name="Set frame" sid="518632529857980" type="BlockerPreview">
+                    <param id="0" name="Frame number">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="222806866058454">
+            <conditions>
+                <condition id="3" name="Compare frame" sid="964333125981226" type="ShoeButton">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="Number">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="310362547837558" type="System">
+                    <param id="0" name="Variable">BlockerShoes</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="5" name="Set frame" sid="957817449465373" type="BlockerPreview">
+                    <param id="0" name="Frame number">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="675516028637034">
+            <conditions>
+                <condition id="3" name="Compare frame" sid="586087139967326" type="ShoeButton2">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="Number">0</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="266130151346069" type="System">
+                    <param id="0" name="Variable">BlockerShoes2</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="5" name="Set frame" sid="271262893676784" type="BlockerPreview2">
+                    <param id="0" name="Frame number">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="132069407635231">
+            <conditions>
+                <condition id="3" name="Compare frame" sid="743753913990095" type="ShoeButton2">
+                    <param id="0" name="Comparison">0</param>
+                    <param id="1" name="Number">1</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="808463606369079" type="System">
+                    <param id="0" name="Variable">BlockerShoes2</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="5" name="Set frame" sid="860508477608235" type="BlockerPreview2">
+                    <param id="0" name="Frame number">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <variable constant="0" name="WajsSiti" sid="442641293054133" static="0" type="number">0</variable>
+        <event-block sid="951574982322726">
+            <conditions>
+                <condition id="2" name="Mouse button is down" sid="864692353149602" type="Mouse">
+                    <param id="0" name="Mouse button">0</param>
+                </condition>
+                <condition id="2" name="Mouse button is down" sid="783001398691738" type="Mouse">
+                    <param id="0" name="Mouse button">2</param>
+                </condition>
+                <condition id="2" name="Key is down" sid="407044421120956" type="Keyboard">
+                    <param id="0" name="Key">68</param>
+                </condition>
+                <condition id="2" name="Key is down" sid="595910251014717" type="Keyboard">
+                    <param id="0" name="Key">66</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="864197185372256" type="System" />
+            </conditions>
+            <actions>
+                <action id="-9" name="Set value" sid="669944804135733" type="System">
+                    <param id="0" name="Variable">WajsSiti</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="0" name="Play" sid="414122876840510" type="Audio">
+                    <param id="0" name="Audio file">DevToolSpawn</param>
+                    <param id="2" name="Loop">0</param>
+                    <param id="3" name="Volume">0</param>
+                    <param id="1" name="Tag (optional)">&quot;&quot;</param>
+                </action>
+                <action id="2" name="Set visible" sid="748323768143854" type="DebugGoodness">
+                    <param id="0" name="Visibility">1</param>
+                </action>
+                <action id="-36" name="Save" sid="431969529606482" type="System">
+                    <param id="0" name="Slot">&quot;kutafon&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="225869762369962">
+            <conditions>
+                <condition id="0" name="On collision with another object" sid="408207563351466" type="Decapitator">
+                    <param id="0" name="Object">TiledPlatform</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="12" name="Vibrate" sid="404052737769946" type="Browser">
+                    <param id="0" name="Pattern">&quot;200&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="882001791806898">
+            <conditions>
+                <condition id="7" name="Cursor is over object" sid="650732569336041" type="Mouse">
+                    <param id="0" name="Object">Base</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="645868044667136" type="System" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="844389204944369" type="MapPreview">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="5" name="Set frame" sid="671668309986739" type="MapPreview">
+                    <param id="0" name="Frame number">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="929567321650935">
+            <conditions>
+                <condition id="7" name="Cursor is over object" sid="472168964015317" type="Mouse">
+                    <param id="0" name="Object">House</param>
+                </condition>
+                <condition id="-4" name="Trigger once while true" sid="906517224610526" type="System" />
+            </conditions>
+            <actions>
+                <action id="4" name="Set animation" sid="456825579291967" type="MapPreview">
+                    <param id="0" name="Animation">&quot;Default&quot;</param>
+                    <param id="1" name="From">1</param>
+                </action>
+                <action id="5" name="Set frame" sid="338060893713671" type="MapPreview">
+                    <param id="0" name="Frame number">2</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="802292055657180">
+            <conditions>
+                <condition id="-18" name="On created" sid="879957127703478" type="CreditText" />
+            </conditions>
+            <actions>
+                <action id="0" name="Set text" sid="530290708296031" type="CreditText">
+                    <param id="0" name="Text">&quot;Programming and Design - Saver310&quot; &amp; newline &amp;&quot;Pistol Sound - Brutal Doom&quot; &amp; newline &amp; &quot;Shotgun Sound - Doom 3 and Black Mesa combined&quot; &amp; newline &amp; &quot;Revolver Sounds - Black Mesa&quot; &amp; newline &amp; &quot;Jump Sound - Deathmatch Classic&quot; &amp; newline &amp; &quot;Error Sound - Half-Life&quot; &amp; newline &amp; &quot;Rocket Launcher - Quake II&quot; &amp; newline &amp; &quot;Other sounds mostly taken from Kosmos-Mega-Sound-Pack-V3&quot; &amp; newline &amp; &quot;Polish Translation - Saver310&quot; &amp; newline &amp; &quot;Russian Translation - DoodleBro&quot; &amp; newline &amp; &quot;Turkish Translation - shotgunner20&quot; &amp; newline &amp; &quot;That One Guy - shotgunner20&quot; &amp; newline &amp; &quot;Original Pistol and Shotgun Designs - Pietyo&quot; &amp; newline &amp; &quot;Catastrophy - Cheshyre&quot; &amp; newline &amp; &quot;H9, H10, H41, C19, C32 - Hotline Miami&quot; &amp; newline &amp; &quot;H21 - Quake&quot; &amp; newline &amp; &quot;H22 - Quake III &quot; &amp; newline &amp; &quot;H23 - Blood &quot; &amp; newline &amp; &quot;H24, C28 - Strike Force Heroes&quot; &amp; newline &amp; &quot;H25, H26, H42, C18, C23 - Madness Combat&quot; &amp; newline &amp; &quot;H49, H50, C34, C35 - Ultrakill&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="151726155106377">
+            <conditions>
+                <condition id="0" name="On key pressed" sid="870576672401433" type="Keyboard">
+                    <param id="0" name="Key">122</param>
+                </condition>
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="134562613322757">
+                    <conditions>
+                        <condition id="10" name="Is fullscreen" sid="635569382313789" type="Browser" />
+                    </conditions>
+                    <actions>
+                        <action id="11" name="Cancel fullscreen" sid="124718324859929" type="Browser" />
+                    </actions>
+                </event-block>
+                <event-block sid="638948936186053">
+                    <conditions>
+                        <condition id="-22" name="Else" sid="440466090281600" type="System" />
+                    </conditions>
+                    <actions>
+                        <action id="10" name="Request fullscreen" sid="986781676435201" type="Browser">
+                            <param id="0" name="Mode">3</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+        <variable constant="0" name="LeftP1" sid="538053224598673" static="0" type="number">65</variable>
+        <variable constant="0" name="RightP1" sid="564762318314793" static="0" type="number">68</variable>
+        <variable constant="0" name="UpP1" sid="873412511748189" static="0" type="number">87</variable>
+        <variable constant="0" name="DownP1" sid="715390954943162" static="0" type="number">83</variable>
+        <variable constant="0" name="FireP1" sid="150855172395134" static="0" type="number">70</variable>
+        <variable constant="0" name="ThrowP1" sid="678145490097883" static="0" type="number">71</variable>
+        <variable constant="0" name="LeftP2" sid="479510467324386" static="0" type="number">37</variable>
+        <variable constant="0" name="RightP2" sid="406056329142226" static="0" type="number">39</variable>
+        <variable constant="0" name="UpP2" sid="445851433256031" static="0" type="number">38</variable>
+        <variable constant="0" name="DownP2" sid="637936209806923" static="0" type="number">40</variable>
+        <variable constant="0" name="FireP2" sid="953420373632437" static="0" type="number">96</variable>
+        <variable constant="0" name="ThrowP2" sid="691532539086434" static="0" type="number">110</variable>
+        <event-block sid="194104234096644">
+            <conditions>
+                <condition id="-14" name="Compare variable" sid="234513820853360" type="System">
+                    <param id="0" name="Variable">LeftP1</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">65</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="666373973511889" type="System">
+                    <param id="0" name="Variable">RightP1</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">68</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="205760936205016" type="System">
+                    <param id="0" name="Variable">UpP1</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">87</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="725178981989886" type="System">
+                    <param id="0" name="Variable">DownP1</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">83</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="416724239597166" type="System">
+                    <param id="0" name="Variable">FireP1</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">70</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="552900939760927" type="System">
+                    <param id="0" name="Variable">ThrowP1</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">71</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="827364412810839" type="System">
+                    <param id="0" name="Variable">LeftP2</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">37</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="201724733814769" type="System">
+                    <param id="0" name="Variable">RightP2</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">39</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="661225336891918" type="System">
+                    <param id="0" name="Variable">UpP2</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">38</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="580565999196129" type="System">
+                    <param id="0" name="Variable">DownP2</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">40</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="328065631193265" type="System">
+                    <param id="0" name="Variable">FireP2</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">96</param>
+                </condition>
+                <condition id="-14" name="Compare variable" sid="598034922777401" type="System">
+                    <param id="0" name="Variable">ThrowP2</param>
+                    <param id="1" name="Comparison">0</param>
+                    <param id="2" name="Value">110</param>
+                </condition>
+            </conditions>
+            <actions>
+                <action id="3" name="Set enabled" sid="570803612315428" type="ResetBindings">
+                    <param id="0" name="Mode">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="492687426657832">
+            <conditions>
+                <condition id="-22" name="Else" sid="951931788123144" type="System" />
+            </conditions>
+            <actions>
+                <action id="3" name="Set enabled" sid="215706525976086" type="ResetBindings">
+                    <param id="0" name="Mode">1</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="838157826717896">
+            <conditions>
+                <condition id="0" name="On clicked" sid="298778064505173" type="ResetBindings" />
+            </conditions>
+            <actions>
+                <action id="3" name="Set enabled" sid="982751348707174" type="ResetBindings">
+                    <param id="0" name="Mode">0</param>
+                </action>
+                <action id="-9" name="Set value" sid="846624210792301" type="System">
+                    <param id="0" name="Variable">LeftP1</param>
+                    <param id="1" name="Value">65</param>
+                </action>
+                <action id="-9" name="Set value" sid="490061068296340" type="System">
+                    <param id="0" name="Variable">RightP1</param>
+                    <param id="1" name="Value">68</param>
+                </action>
+                <action id="-9" name="Set value" sid="559807950286421" type="System">
+                    <param id="0" name="Variable">UpP1</param>
+                    <param id="1" name="Value">87</param>
+                </action>
+                <action id="-9" name="Set value" sid="772568272002051" type="System">
+                    <param id="0" name="Variable">DownP1</param>
+                    <param id="1" name="Value">83</param>
+                </action>
+                <action id="-9" name="Set value" sid="769000297088109" type="System">
+                    <param id="0" name="Variable">FireP1</param>
+                    <param id="1" name="Value">70</param>
+                </action>
+                <action id="-9" name="Set value" sid="132954405116939" type="System">
+                    <param id="0" name="Variable">ThrowP1</param>
+                    <param id="1" name="Value">71</param>
+                </action>
+                <action id="-9" name="Set value" sid="121409001846036" type="System">
+                    <param id="0" name="Variable">LeftP2</param>
+                    <param id="1" name="Value">37</param>
+                </action>
+                <action id="-9" name="Set value" sid="392228875150975" type="System">
+                    <param id="0" name="Variable">RightP2</param>
+                    <param id="1" name="Value">39</param>
+                </action>
+                <action id="-9" name="Set value" sid="290012575703878" type="System">
+                    <param id="0" name="Variable">UpP2</param>
+                    <param id="1" name="Value">38</param>
+                </action>
+                <action id="-9" name="Set value" sid="613591017941117" type="System">
+                    <param id="0" name="Variable">DownP2</param>
+                    <param id="1" name="Value">40</param>
+                </action>
+                <action id="-9" name="Set value" sid="607172098455797" type="System">
+                    <param id="0" name="Variable">FireP2</param>
+                    <param id="1" name="Value">96</param>
+                </action>
+                <action id="-9" name="Set value" sid="530611721328315" type="System">
+                    <param id="0" name="Variable">ThrowP2</param>
+                    <param id="1" name="Value">110</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="168086696567726">
+            <conditions>
+                <condition id="0" name="On clicked" sid="338088323586296" type="SaveSettings" />
+            </conditions>
+            <actions>
+                <action id="3" name="Set enabled" sid="518968718888098" type="LoadSettings">
+                    <param id="0" name="Mode">1</param>
+                </action>
+                <action id="-36" name="Save" sid="994592196773408" type="System">
+                    <param id="0" name="Slot">&quot;settings&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="419188303530793">
+            <conditions>
+                <condition id="0" name="On clicked" sid="239820855271219" type="LoadSettings" />
+            </conditions>
+            <actions>
+                <action id="-37" name="Load" sid="535390034553487" type="System">
+                    <param id="0" name="Slot">&quot;settings&quot;</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="289068802829142">
+            <conditions>
+                <condition id="-30" name="On load failed" sid="798747547056629" type="System" />
+            </conditions>
+            <actions>
+                <action id="3" name="Set enabled" sid="885761435191328" type="LoadSettings">
+                    <param id="0" name="Mode">0</param>
+                </action>
+            </actions>
+        </event-block>
+        <event-block sid="418872225007251">
+            <conditions>
+                <condition id="0" name="On clicked" sid="671840999439482" type="BindLeftP1" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="671736660066418" type="BindLeftP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="936046975280426" type="BindRightP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="424420526216094" type="BindUpP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="741029985506641" type="BindDownP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="521886548211454" type="BindFireP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="151138177568379" type="BindThrowP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="714637203177147" type="BindLeftP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="554629977851634" type="BindRightP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="905882219744264" type="BindUpP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="724300117511233" type="BindDownP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="621971709156092" type="BindFireP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="152072991910909" type="BindThrowP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="8" name="Set unfocused" sid="608820422266196" type="BindLeftP1" />
+            </actions>
+        </event-block>
+        <event-block sid="254564305734979">
+            <conditions>
+                <condition id="0" name="On clicked" sid="164026910050635" type="BindRightP1" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="327874357763090" type="BindLeftP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="941699461107885" type="BindRightP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="157844575409183" type="BindUpP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="253800424285805" type="BindDownP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="162853755928861" type="BindFireP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="117277048072223" type="BindThrowP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="208225067675091" type="BindLeftP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="459929064141377" type="BindRightP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="559692586513811" type="BindUpP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="284161031518834" type="BindDownP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="760535752905461" type="BindFireP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="986882822335325" type="BindThrowP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="8" name="Set unfocused" sid="931317530204636" type="BindRightP1" />
+            </actions>
+        </event-block>
+        <event-block sid="476339470952679">
+            <conditions>
+                <condition id="0" name="On clicked" sid="172376886328956" type="BindUpP1" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="788869445580425" type="BindLeftP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="273631321534956" type="BindRightP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="702116095864300" type="BindUpP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="683515937626118" type="BindDownP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="354354031183786" type="BindFireP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="840849489779362" type="BindThrowP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="169819901038931" type="BindLeftP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="105590369701103" type="BindRightP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="399693169129597" type="BindUpP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="649808470302825" type="BindDownP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="964665549915921" type="BindFireP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="466246611716597" type="BindThrowP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="8" name="Set unfocused" sid="633187128237800" type="BindUpP1" />
+            </actions>
+        </event-block>
+        <event-block sid="278869387557744">
+            <conditions>
+                <condition id="0" name="On clicked" sid="160139713689613" type="BindDownP1" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="645298982204815" type="BindLeftP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="158918140211576" type="BindRightP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="937546881888654" type="BindUpP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="423096533495820" type="BindDownP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="767088116098658" type="BindFireP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="616723893153709" type="BindThrowP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="592240739497541" type="BindLeftP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="381737198534823" type="BindRightP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="713972781514494" type="BindUpP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="454587594331909" type="BindDownP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="890160745853217" type="BindFireP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="897450679486842" type="BindThrowP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="8" name="Set unfocused" sid="406150430752502" type="BindDownP1" />
+            </actions>
+        </event-block>
+        <event-block sid="624923560452754">
+            <conditions>
+                <condition id="0" name="On clicked" sid="619823908923834" type="BindFireP1" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="655498874337361" type="BindLeftP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="351341994256446" type="BindRightP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="932597228919287" type="BindUpP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="629352177377040" type="BindDownP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="320791388088824" type="BindFireP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="369350163652269" type="BindThrowP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="832214217858465" type="BindLeftP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="878341216299929" type="BindRightP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="978842531348183" type="BindUpP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="458855266008174" type="BindDownP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="760918065203532" type="BindFireP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="982969274985312" type="BindThrowP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="8" name="Set unfocused" sid="867665147336842" type="BindFireP1" />
+            </actions>
+        </event-block>
+        <event-block sid="443505989206105">
+            <conditions>
+                <condition id="0" name="On clicked" sid="310865367255259" type="BindThrowP1" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="319791959572936" type="BindLeftP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="387637993615198" type="BindRightP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="662425540347741" type="BindUpP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="964267038724320" type="BindDownP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="220091543149107" type="BindFireP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="742709791710185" type="BindThrowP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="819490694950750" type="BindLeftP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="987196600690797" type="BindRightP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="652130414813501" type="BindUpP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="948329401845094" type="BindDownP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="285703759064858" type="BindFireP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="345458435703514" type="BindThrowP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="8" name="Set unfocused" sid="221900376036926" type="BindThrowP1" />
+            </actions>
+        </event-block>
+        <comment>Player 2 binds start here</comment>
+        <event-block sid="221870433711251">
+            <conditions>
+                <condition id="0" name="On clicked" sid="196941569713129" type="BindLeftP2" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="895098482637140" type="BindLeftP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="862568299680630" type="BindRightP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="323042240174954" type="BindUpP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="484153946279335" type="BindDownP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="228144988671813" type="BindFireP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="696992053556866" type="BindThrowP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="702248903288014" type="BindLeftP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="649057554448122" type="BindRightP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="357557076207142" type="BindUpP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="719587016105472" type="BindDownP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="136340500829973" type="BindFireP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="661749535218350" type="BindThrowP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="8" name="Set unfocused" sid="597919936490491" type="BindLeftP2" />
+            </actions>
+        </event-block>
+        <event-block sid="248056419733956">
+            <conditions>
+                <condition id="0" name="On clicked" sid="512834168670892" type="BindRightP2" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="806461360748763" type="BindLeftP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="939905919328122" type="BindRightP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="891167194352005" type="BindUpP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="760199747405672" type="BindDownP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="613553663332695" type="BindFireP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="353345812215079" type="BindThrowP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="617792002453141" type="BindLeftP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="203038441944431" type="BindRightP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="181225947589737" type="BindUpP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="830992482053420" type="BindDownP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="234369800171008" type="BindFireP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="965865085676054" type="BindThrowP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="8" name="Set unfocused" sid="106032760526006" type="BindRightP2" />
+            </actions>
+        </event-block>
+        <event-block sid="442317023406554">
+            <conditions>
+                <condition id="0" name="On clicked" sid="759366572208108" type="BindUpP2" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="509674444215965" type="BindLeftP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="585051697504870" type="BindRightP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="836086680968828" type="BindUpP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="639366754451886" type="BindDownP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="999242428582624" type="BindFireP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="669677017553258" type="BindThrowP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="910499433077400" type="BindLeftP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="697175356926544" type="BindRightP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="711573252490609" type="BindUpP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="999167351824618" type="BindDownP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="768984891847752" type="BindFireP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="475445183421022" type="BindThrowP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="8" name="Set unfocused" sid="903342293509970" type="BindUpP2" />
+            </actions>
+        </event-block>
+        <event-block sid="793000988026923">
+            <conditions>
+                <condition id="0" name="On clicked" sid="651707036908924" type="BindDownP2" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="418091990594198" type="BindLeftP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="593096671979505" type="BindRightP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="203052859962096" type="BindUpP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="396409412989206" type="BindDownP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="818363700677568" type="BindFireP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="237310142315401" type="BindThrowP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="464864474587568" type="BindLeftP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="362241324654061" type="BindRightP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="782048000152327" type="BindUpP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="952415787501035" type="BindDownP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="596504232451932" type="BindFireP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="807199664915961" type="BindThrowP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="8" name="Set unfocused" sid="577756566217012" type="BindDownP2" />
+            </actions>
+        </event-block>
+        <event-block sid="152294600619459">
+            <conditions>
+                <condition id="0" name="On clicked" sid="868398367446117" type="BindFireP2" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="515291689554503" type="BindLeftP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="791127068318899" type="BindRightP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="236467475081998" type="BindUpP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="316879952722410" type="BindDownP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="276639511013918" type="BindFireP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="197102502237976" type="BindThrowP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="788430461382769" type="BindLeftP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="370419283664842" type="BindRightP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="280906109261130" type="BindUpP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="328305803357754" type="BindDownP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="571837523534964" type="BindFireP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="-10" name="Set value" sid="985171315504755" type="BindThrowP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="8" name="Set unfocused" sid="329398061341150" type="BindFireP2" />
+            </actions>
+        </event-block>
+        <event-block sid="380284972175341">
+            <conditions>
+                <condition id="0" name="On clicked" sid="237804287508444" type="BindThrowP2" />
+            </conditions>
+            <actions>
+                <action id="-10" name="Set value" sid="715385844489822" type="BindLeftP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="838415196431084" type="BindRightP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="313193520415817" type="BindUpP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="336626326628477" type="BindDownP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="651088787196658" type="BindFireP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="951952200053021" type="BindThrowP1">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="585533461465181" type="BindLeftP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="344757270300635" type="BindRightP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="648099150796833" type="BindUpP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="373075836859876" type="BindDownP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="577146236665412" type="BindFireP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">0</param>
+                </action>
+                <action id="-10" name="Set value" sid="592328091289380" type="BindThrowP2">
+                    <param id="0" name="Instance variable">CheckingBinding</param>
+                    <param id="1" name="Value">1</param>
+                </action>
+                <action id="8" name="Set unfocused" sid="470748818931647" type="BindThrowP2" />
+            </actions>
+        </event-block>
+        <event-block sid="306382539809934">
+            <conditions>
+                <condition id="1" name="On any key pressed" sid="552679937729087" type="Keyboard" />
+            </conditions>
+            <actions />
+            <sub-events>
+                <event-block sid="474117290540797">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="557300338593199" type="BindLeftP1">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="349528923512028" type="BindLeftP1">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="547453143017317" type="System">
+                            <param id="0" name="Variable">LeftP1</param>
+                            <param id="1" name="Value">Keyboard.LastKeyCode</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="229700809880444">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="843585683766643" type="BindRightP1">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="354408373328492" type="BindRightP1">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="543577297563052" type="System">
+                            <param id="0" name="Variable">RightP1</param>
+                            <param id="1" name="Value">Keyboard.LastKeyCode</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="457170036120777">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="615643813200095" type="BindUpP1">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="283030938704783" type="BindUpP1">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="668246168325062" type="System">
+                            <param id="0" name="Variable">UpP1</param>
+                            <param id="1" name="Value">Keyboard.LastKeyCode</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="239700460745293">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="636274286855358" type="BindDownP1">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="120866838499696" type="BindDownP1">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="442453102734387" type="System">
+                            <param id="0" name="Variable">DownP1</param>
+                            <param id="1" name="Value">Keyboard.LastKeyCode</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="596107805077600">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="125317847599226" type="BindFireP1">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="498977793503779" type="BindFireP1">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="689025638525507" type="System">
+                            <param id="0" name="Variable">FireP1</param>
+                            <param id="1" name="Value">Keyboard.LastKeyCode</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="762040247216100">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="634220437786417" type="BindThrowP1">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="568118944204659" type="BindThrowP1">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="865013711509838" type="System">
+                            <param id="0" name="Variable">ThrowP1</param>
+                            <param id="1" name="Value">Keyboard.LastKeyCode</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <comment>Player 2 binds start here</comment>
+                <event-block sid="361778868961938">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="464530932832015" type="BindLeftP2">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="798313505593475" type="BindLeftP2">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="763434666443404" type="System">
+                            <param id="0" name="Variable">LeftP2</param>
+                            <param id="1" name="Value">Keyboard.LastKeyCode</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="864228442440147">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="681748521952318" type="BindRightP2">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="278380779491612" type="BindRightP2">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="281628614853906" type="System">
+                            <param id="0" name="Variable">RightP2</param>
+                            <param id="1" name="Value">Keyboard.LastKeyCode</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="144530593864306">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="555729160506051" type="BindUpP2">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="928261256077248" type="BindUpP2">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="579432227244367" type="System">
+                            <param id="0" name="Variable">UpP2</param>
+                            <param id="1" name="Value">Keyboard.LastKeyCode</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="758535521939075">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="423283137778067" type="BindDownP2">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="831309578375487" type="BindDownP2">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="249251005294398" type="System">
+                            <param id="0" name="Variable">DownP2</param>
+                            <param id="1" name="Value">Keyboard.LastKeyCode</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="554094254261202">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="471961806036355" type="BindFireP2">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="564469798980784" type="BindFireP2">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="568502411351302" type="System">
+                            <param id="0" name="Variable">FireP2</param>
+                            <param id="1" name="Value">Keyboard.LastKeyCode</param>
+                        </action>
+                    </actions>
+                </event-block>
+                <event-block sid="514546484172976">
+                    <conditions>
+                        <condition id="-7" name="Compare instance variable" sid="684887162131289" type="BindThrowP2">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Comparison">0</param>
+                            <param id="2" name="Value">1</param>
+                        </condition>
+                    </conditions>
+                    <actions>
+                        <action id="-10" name="Set value" sid="215461019596233" type="BindThrowP2">
+                            <param id="0" name="Instance variable">CheckingBinding</param>
+                            <param id="1" name="Value">0</param>
+                        </action>
+                        <action id="-9" name="Set value" sid="505100022355404" type="System">
+                            <param id="0" name="Variable">ThrowP2</param>
+                            <param id="1" name="Value">Keyboard.LastKeyCode</param>
+                        </action>
+                    </actions>
+                </event-block>
+            </sub-events>
+        </event-block>
+    </events>
+</c2eventsheet>
