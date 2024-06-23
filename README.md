@@ -7,3 +7,4 @@
 
 * Get rid of all copyrighted stuff
 * Fix some bugs
+* Finish the Russian and Turkish translation
